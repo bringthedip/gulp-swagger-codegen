@@ -4,6 +4,7 @@
 ![Dev Dependencies](https://david-dm.org/bringthedip/gulp-swagger-codegen/dev-status.svg)
 
 ![Stats]( https://nodei.co/npm/gulp-swagger-codegen.png?downloads=true&downloadRank=true&stars=true)
+
 ![Downloads](https://nodei.co/npm-dl/gulp-swagger-codegen.png)
 
 
