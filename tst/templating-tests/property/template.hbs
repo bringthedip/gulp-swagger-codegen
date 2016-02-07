@@ -1,0 +1,4 @@
+{{#with someContext}}
+{{#property . "x-invalid-handlebars-name" "friendly"}}{{friendly}}{{else}}WRONG{{/property}}
+{{#property . "x-nonexist-name" friendly}}WRONG{{else}}RIGHT{{/property}}
+{{/with}}

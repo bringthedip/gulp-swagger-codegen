@@ -1,0 +1,118 @@
+'use strict';
+
+const {{#lowerFirst}}{{groupKey}}{{/lowerFirst}}Implementation = require('{{#with options}}{{implementationPath}}{{/with}}/{{fileName}}');
+
+/**
+ * Helper function to validate that various attributes of
+ * the request state are valid.
+ * @param {object}    req     - Request object
+ * @param {object}    res     - Response object
+ **/
+function validateSwaggerRequest(req, res) {
+  // Validate arguments
+  if (!req) {
+    throw new Error('req (Request state) cannot be null');
+  } else if (!res) {
+    throw new Error('res (Response object) cannot be null');
+  } else if (!(req.swagger)) {
+    throw new Error("req.swagger (Swagger State) cannot be null");
+  } else if (!(req.swagger.params)) {
+    throw new Error('req.swagger.params (Incoming parameters array) cannot be null');
+  }
+}
+
+/**
+ * Resolve the implementation of this controller
+ * @param {object} impl     - Implementation object
+ * @returns                 - Same object if object, calls function if function
+ **/
+function resolveImplementation(impl) {
+  // Validate arguments
+  if (!impl) {
+    throw new Error('Cannot resolve implementation. require() returned null');
+  }
+
+  // Call generator function, if required
+  if (typeof impl === 'function') {
+    return impl();
+  }
+
+  // POJSO.
+  return impl;
+}
+
+{{#each members}}
+
+/**
+ * {{#if summary}}{{summary}}{{else}}{{operationId}}{{/if}}
+ * @remarks {{#if description}}{{description}}{{else}}Operation handler for {{operationId}}{{/if}}
+ * @param {object}    req     - Request object
+ * @param {object}    res     - Response object
+ **/
+function {{operationId}}(req, res) {
+  // Validate arguments
+  validateSwaggerRequest(req, res);
+
+  // Parse operation parameters.
+  {{#each parameters}}
+  {{#compare required "==" true}}
+  if (req.swagger.params.{{name}} === null || req.swagger.params.{{name}} === undefined) {
+    throw new Error('Cannot process {{operationId}}: parameter {{name}} cannot be null.');
+  }
+  {{/compare}}
+  {{/each}}
+  {{#each parameters}}
+  {{#if schema}}
+  {{#with schema}}
+  {{#withDef $ref ../../../definitionMap}}
+  const {{../../name}} = new {{definitionName}}(req.swagger.params.{{../../name}});
+  {{/withDef}}
+  {{/with}}
+  {{else}}
+  const {{name}} = req.swagger.params.{{name}};
+  {{/if}}
+  {{/each}}
+
+  // Create responder: This will set the content type, status code and also
+  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // on operations in order to have a mapping here. Enforce typing of the
+  // responses with swaggerValidator from swagger-tools.
+  const responder = {
+    res,
+  {{#each responses}}
+    {{#property . "x-gulp-swagger-generator-outcome" "resultName"}}
+    // Handle status {{@key}} [{{resultName}}]
+    {{resultName}}: function end{{#upperFirst}}{{resultName}}{{/upperFirst}}(result) {
+      res.json(result || {}, {{#compare @key "===" "default"}}200{{else}}{{@key}}{{/compare}});
+    },
+    {{else}}
+    // Result code {{@key}} does not have a "x-gulp-swagger-generator-outcome
+    // {{@key}} = {{#property . "x-gulp-swagger-generator-outcome" propName}}{{else}}Not mapped{{/property}}
+    {{/property}}
+  {{/each}}
+  }
+
+  // Validate implementation presence
+  const impl = resolveImplementation({{#lowerFirst}}{{../groupKey}}{{/lowerFirst}}Implementation);
+  if (!impl) {
+    throw new Error('Cannot resolve implementation of {{../groupKey}}');
+  } else if (!impl.{{operationId}}) {
+    throw new Error('Implementation is missing operation {{operationId}} for {{../groupKey}}');
+  } else if (!(typeof impl.{{operationId}} === 'function')) {
+    throw new Error('Implementation is not a function: {{operationId}} for {{../groupKey}}');
+  }
+
+  // Execute
+  impl.{{operationId}}(
+{{#each parameters}}    {{name}},
+{{/each}}
+    responder
+  );
+}
+{{/each}}
+
+module.exports = {
+{{#each members}}
+  {{operationId}},
+{{/each}}
+};

@@ -1,0 +1,6 @@
+{
+  "someContext": {
+    "x-invalid-handlebars-name": "RIGHT",
+    "x-another-name": "WRONG"
+  }
+}
