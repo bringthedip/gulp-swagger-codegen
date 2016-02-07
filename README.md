@@ -3,6 +3,11 @@
 ![Prod Dependencies](https://david-dm.org/bringthedip/gulp-swagger-codegen/status.svg)
 ![Dev Dependencies](https://david-dm.org/bringthedip/gulp-swagger-codegen/dev-status.svg)
 
+![Stats]( https://nodei.co/npm/gulp-swagger-codegen.png?downloads=true&downloadRank=true&stars=true)
+
+![Downloads](https://nodei.co/npm-dl/gulp-swagger-codegen.png)
+
+
 This gulp module generates code from Swagger API definitions and is intended
 to be used to simplify implementation of API servers/clients by providing 
 generated code for the request/response objects, and also some templates to
