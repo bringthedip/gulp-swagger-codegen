@@ -12,13 +12,20 @@
   },
   "keywords": [
     "gulp",
+    "plugin",
+    "task",
     "swagger",
     "code",
     "generation",
+    "codegen",
+    "es6",
+    "es2015",
     "tool",
     "build",
     "api",
-    "rest"
+    "rest",
+    "templating",
+    "handlebars"
   ],
   "author": "Steve Gray",
   "license": "MIT",
