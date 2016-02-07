@@ -177,6 +177,11 @@ are applied:
       (i.e. #/definitions/Pet)
 
 ### Handlebars Template Helper Functions
+#### Registering Your Own
+You can register your own `handlebars` helper functions by adding a top-level configuration
+property called `helpers` and assigning the functions as key-values. The key will be the
+exact block-helper name and the value must be the helper function itself.
+
 #### arrayContains
 Does the array contain an item?
 
