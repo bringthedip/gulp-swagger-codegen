@@ -1,7 +1,7 @@
 # gulp-swagger-codegen
 ![Travis-CI Build](https://travis-ci.org/bringthedip/gulp-swagger-codegen.svg?branch=master)
-![Prod Dependencies](https://david-dm.org/gulp-swagger-codegen/gulp-swagger-codegen/status.svg)
-![Dev Dependencies](https://david-dm.org/gulp-swagger-codegen/gulp-swagger-codegen/dev-status.svg)
+![Prod Dependencies](https://david-dm.org/bringthedip/gulp-swagger-codegen/status.svg)
+![Dev Dependencies](https://david-dm.org/bringthedip/gulp-swagger-codegen/dev-status.svg)
 
 This gulp module generates code from Swagger API definitions and is intended
 to be used to simplify implementation of API servers/clients by providing 
