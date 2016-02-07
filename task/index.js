@@ -2,7 +2,7 @@
 
 // NPM Imports
 const _ = require('lodash');
-const debug = require('debug')('gulp-swagger-generator');
+const debug = require('debug')('gulp-swagger-codegen');
 const defaults = require('defaults-deep');
 const fs = require('fs');
 const gutil = require('gulp-util');

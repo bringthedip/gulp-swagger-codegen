@@ -163,15 +163,15 @@ paths:
           format: int64
       responses:
         "404":
-          x-gulp-swagger-generator-outcome: notFound
+          x-gulp-swagger-codegen-outcome: notFound
           description: Pet not found
         "200":
-          x-gulp-swagger-generator-outcome: success
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
           schema:
             $ref: "#/definitions/Pet"
         "400":
-          x-gulp-swagger-generator-outcome: invalidId
+          x-gulp-swagger-codegen-outcome: invalidId
           description: Invalid ID supplied
       security:
         - api_key: []
@@ -207,7 +207,7 @@ paths:
           type: string
       responses:
         "405":
-          x-gulp-swagger-generator-outcome: invalidInput
+          x-gulp-swagger-codegen-outcome: invalidInput
           description: Invalid input
       security:
         - petstore_auth:
@@ -236,7 +236,7 @@ paths:
           format: int64
       responses:
         "400":
-          x-gulp-swagger-generator-outcome: invalidPet
+          x-gulp-swagger-codegen-outcome: invalidPet
           description: Invalid pet value
       security:
         - petstore_auth:
@@ -262,12 +262,12 @@ paths:
             $ref: "#/definitions/Order"
       responses:
         "200":
-          x-gulp-swagger-generator-outcome: success
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
           schema:
             $ref: "#/definitions/Order"
         "400":
-          x-gulp-swagger-generator-outcome: invalid
+          x-gulp-swagger-codegen-outcome: invalid
           description: Invalid Order
   /stores/order/{orderId}:
     x-swagger-router-controller: stores
@@ -288,15 +288,15 @@ paths:
           type: string
       responses:
         "404":
-          x-gulp-swagger-generator-outcome: notFound
+          x-gulp-swagger-codegen-outcome: notFound
           description: Order not found
         "200":
-          x-gulp-swagger-generator-outcome: success
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
           schema:
             $ref: "#/definitions/Order"
         "400":
-          x-gulp-swagger-generator-outcome: invalidId
+          x-gulp-swagger-codegen-outcome: invalidId
           description: Invalid ID supplied
     delete:
       tags:
@@ -315,10 +315,10 @@ paths:
           type: string
       responses:
         "404":
-          x-gulp-swagger-generator-outcome: notFound
+          x-gulp-swagger-codegen-outcome: notFound
           description: Order not found
         "400":
-          x-gulp-swagger-generator-outcome: invalidId
+          x-gulp-swagger-codegen-outcome: invalidId
           description: Invalid ID supplied
   /users:
     x-swagger-router-controller: users
@@ -340,7 +340,7 @@ paths:
             $ref: "#/definitions/User"
       responses:
         default:
-          x-gulp-swagger-generator-outcome: success
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
   /users/createWithArray:
     x-swagger-router-controller: users
@@ -364,7 +364,7 @@ paths:
               $ref: "#/definitions/User"
       responses:
         default:
-          x-gulp-swagger-generator-outcome: success
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
   /users/createWithList:
     x-swagger-router-controller: users
@@ -388,7 +388,7 @@ paths:
               $ref: "#/definitions/User"
       responses:
         default:
-          x-gulp-swagger-generator-outcome: success
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
   /users/login:
     x-swagger-router-controller: users
@@ -414,12 +414,12 @@ paths:
           type: string
       responses:
         "200":
-          x-gulp-swagger-generator-outcome: success
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
           schema:
             type: string
         "400":
-          x-gulp-swagger-generator-outcome: invalidId
+          x-gulp-swagger-codegen-outcome: invalidId
           description: Invalid username/password supplied
   /users/logout:
     x-swagger-router-controller: users
@@ -434,7 +434,7 @@ paths:
         - application/xml
       responses:
         default:
-          x-gulp-swagger-generator-outcome: success
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
   /users/{username}:
     x-swagger-router-controller: users
@@ -455,15 +455,15 @@ paths:
           type: string
       responses:
         "404":
-          x-gulp-swagger-generator-outcome: notFound
+          x-gulp-swagger-codegen-outcome: notFound
           description: User not found
         "200":
-          x-gulp-swagger-generator-outcome: success
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
           schema:
             $ref: "#/definitions/User"
         "400":
-          x-gulp-swagger-generator-outcome: invalidId
+          x-gulp-swagger-codegen-outcome: invalidId
           description: Invalid username supplied
     put:
       tags:
@@ -488,10 +488,10 @@ paths:
             $ref: "#/definitions/User"
       responses:
         "404":
-          x-gulp-swagger-generator-outcome: notFound
+          x-gulp-swagger-codegen-outcome: notFound
           description: User not found
         "400":
-          x-gulp-swagger-generator-outcome: invalidUser
+          x-gulp-swagger-codegen-outcome: invalidUser
           description: Invalid user supplied
     delete:
       tags:
@@ -510,10 +510,10 @@ paths:
           type: string
       responses:
         "404":
-          x-gulp-swagger-generator-outcome: notFound
+          x-gulp-swagger-codegen-outcome: notFound
           description: User not found
         "400":
-          x-gulp-swagger-generator-outcome: invalidId
+          x-gulp-swagger-codegen-outcome: invalidId
           description: Invalid username supplied
 securityDefinitions:
   api_key:

@@ -56,12 +56,12 @@ function addPet(req, res) {
   const body = new Pet(req.swagger.params.body);
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
     res,
-    // Result code 405 does not have a "x-gulp-swagger-generator-outcome
+    // Result code 405 does not have a "x-gulp-swagger-codegen-outcome
     // 405 = Not mapped
   }
 
@@ -96,16 +96,16 @@ function updatePet(req, res) {
   const body = new Pet(req.swagger.params.body);
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
     res,
-    // Result code 400 does not have a "x-gulp-swagger-generator-outcome
+    // Result code 400 does not have a "x-gulp-swagger-codegen-outcome
     // 400 = Not mapped
-    // Result code 404 does not have a "x-gulp-swagger-generator-outcome
+    // Result code 404 does not have a "x-gulp-swagger-codegen-outcome
     // 404 = Not mapped
-    // Result code 405 does not have a "x-gulp-swagger-generator-outcome
+    // Result code 405 does not have a "x-gulp-swagger-codegen-outcome
     // 405 = Not mapped
   }
 
@@ -140,14 +140,14 @@ function findPetsByStatus(req, res) {
   const status = req.swagger.params.status;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
     res,
-    // Result code 200 does not have a "x-gulp-swagger-generator-outcome
+    // Result code 200 does not have a "x-gulp-swagger-codegen-outcome
     // 200 = Not mapped
-    // Result code 400 does not have a "x-gulp-swagger-generator-outcome
+    // Result code 400 does not have a "x-gulp-swagger-codegen-outcome
     // 400 = Not mapped
   }
 
@@ -182,14 +182,14 @@ function findPetsByTags(req, res) {
   const tags = req.swagger.params.tags;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
     res,
-    // Result code 200 does not have a "x-gulp-swagger-generator-outcome
+    // Result code 200 does not have a "x-gulp-swagger-codegen-outcome
     // 200 = Not mapped
-    // Result code 400 does not have a "x-gulp-swagger-generator-outcome
+    // Result code 400 does not have a "x-gulp-swagger-codegen-outcome
     // 400 = Not mapped
   }
 
@@ -227,7 +227,7 @@ function getPetById(req, res) {
   const petId = req.swagger.params.petId;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -288,7 +288,7 @@ function updatePetWithForm(req, res) {
   const status = req.swagger.params.status;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -339,7 +339,7 @@ function deletePet(req, res) {
   const petId = req.swagger.params.petId;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {

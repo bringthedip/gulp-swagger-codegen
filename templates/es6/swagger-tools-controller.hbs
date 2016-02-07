@@ -74,20 +74,20 @@ function {{operationId}}(req, res) {
   {{/each}}
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
     res,
   {{#each responses}}
-    {{#property . "x-gulp-swagger-generator-outcome" "resultName"}}
+    {{#property . "x-gulp-swagger-codegen-outcome" "resultName"}}
     // Handle status {{@key}} [{{resultName}}]
     {{resultName}}: function end{{#upperFirst}}{{resultName}}{{/upperFirst}}(result) {
       res.json(result || {}, {{#compare @key "===" "default"}}200{{else}}{{@key}}{{/compare}});
     },
     {{else}}
-    // Result code {{@key}} does not have a "x-gulp-swagger-generator-outcome
-    // {{@key}} = {{#property . "x-gulp-swagger-generator-outcome" propName}}{{else}}Not mapped{{/property}}
+    // Result code {{@key}} does not have a "x-gulp-swagger-codegen-outcome
+    // {{@key}} = {{#property . "x-gulp-swagger-codegen-outcome" propName}}{{else}}Not mapped{{/property}}
     {{/property}}
   {{/each}}
   }

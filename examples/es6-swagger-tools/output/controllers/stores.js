@@ -56,7 +56,7 @@ function placeOrder(req, res) {
   const body = new Order(req.swagger.params.body);
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -105,7 +105,7 @@ function getOrderById(req, res) {
   const orderId = req.swagger.params.orderId;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -158,7 +158,7 @@ function deleteOrder(req, res) {
   const orderId = req.swagger.params.orderId;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {

@@ -56,7 +56,7 @@ function createUser(req, res) {
   const body = new User(req.swagger.params.body);
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -97,7 +97,7 @@ function createUsersWithArrayInput(req, res) {
   // Parse operation parameters.
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -138,7 +138,7 @@ function createUsersWithListInput(req, res) {
   // Parse operation parameters.
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -181,7 +181,7 @@ function loginUser(req, res) {
   const password = req.swagger.params.password;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -227,7 +227,7 @@ function logoutUser(req, res) {
   // Parse operation parameters.
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -271,7 +271,7 @@ function getUserByName(req, res) {
   const username = req.swagger.params.username;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -325,7 +325,7 @@ function updateUser(req, res) {
   const body = new User(req.swagger.params.body);
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {
@@ -375,7 +375,7 @@ function deleteUser(req, res) {
   const username = req.swagger.params.username;
 
   // Create responder: This will set the content type, status code and also
-  // terminate the request. Note that you must set x-gulp-swagger-generator-outcome
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
   // on operations in order to have a mapping here. Enforce typing of the
   // responses with swaggerValidator from swagger-tools.
   const responder = {

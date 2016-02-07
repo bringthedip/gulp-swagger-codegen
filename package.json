@@ -1,14 +1,14 @@
 {
-  "name": "gulp-swagger-generator",
+  "name": "gulp-swagger-codegen",
   "version": "0.0.1",
-  "description": "Code generation for Swagger projects, targets ES6+.",
+  "description": "Flexible code generation for Swagger projects, targets ES6+.",
   "main": "index.js",
   "scripts": {
     "test": "gulp"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bringthedip/gulp-swagger-generator.git"
+    "url": "git+https://github.com/bringthedip/gulp-swagger-codegen.git"
   },
   "keywords": [
     "gulp",
@@ -23,9 +23,9 @@
   "author": "Steve Gray",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bringthedip/gulp-swagger-generator/issues"
+    "url": "https://github.com/bringthedip/gulp-swagger-codegen/issues"
   },
-  "homepage": "https://github.com/bringthedip/gulp-swagger-generator#readme",
+  "homepage": "https://github.com/bringthedip/gulp-swagger-codegen#readme",
   "dependencies": {
     "debug": "^2.2.0",
     "defaults-deep": "^0.2.3",
