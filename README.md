@@ -270,9 +270,9 @@ Each handlebars template in perPath is run with the following initial context:
       options,        (Options for this template path, allows passing of extra fields)
     }
 
-## Template Additional Information - swager-tools-controller
+## Template Additional Information - swagger-tools-controller
 The `swagger-tools-controller.hbs` template is intended to provide a simplification of
-code when using swager-tools to generate most of your microservice. Each operationId must
+code when using swagger-tools to generate most of your microservice. Each operationId must
 be extended with:
 
  - `x-swagger-router-controller` - Defines which 'controller.js' class contains the operation.
