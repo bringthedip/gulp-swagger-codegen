@@ -46,6 +46,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "config": "^1.19.0",
+    "coveralls": "^2.11.6",
     "eslint-config-airbnb": "^5.0.0",
     "eslint-plugin-react": "^3.16.1",
     "gulp": "^3.9.0",

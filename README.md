@@ -1,7 +1,9 @@
 # gulp-swagger-codegen
+### Fast, flexible code generation for Node.js + Swagger projects
 [![Travis-CI Build](https://travis-ci.org/bringthedip/gulp-swagger-codegen.svg?branch=master)](https://travis-ci.org/bringthedip/gulp-swagger-codegen)
 [![Prod Dependencies](https://david-dm.org/bringthedip/gulp-swagger-codegen/status.svg)](https://david-dm.org/bringthedip/gulp-swagger-codegen)
 [![Dev Dependencies](https://david-dm.org/bringthedip/gulp-swagger-codegen/dev-status.svg)](https://david-dm.org/bringthedip/gulp-swagger-codegen#info=devDependencies)
+[![Code Coverage](https://coveralls.io/repos/github/bringthedip/gulp-swagger-codegen/badge.svg?branch=master)](https://coveralls.io/github/bringthedip/gulp-swagger-codegen)
 [![npm version](https://badge.fury.io/js/gulp-swagger-codegen.svg)](https://badge.fury.io/js/gulp-swagger-codegen)
 
 ![Stats]( https://nodei.co/npm/gulp-swagger-codegen.png?downloads=true&downloadRank=true&stars=true)
