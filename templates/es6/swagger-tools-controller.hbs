@@ -103,7 +103,7 @@ function {{operationId}}(req, res) {
   }
 
   // Execute
-  impl.{{operationId}}(
+  return impl.{{operationId}}(
 {{#each parameters}}    {{name}},
 {{/each}}
     responder
