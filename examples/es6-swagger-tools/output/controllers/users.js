@@ -78,7 +78,7 @@ function createUser(req, res) {
   }
 
   // Execute
-  impl.createUser(
+  return impl.createUser(
     body,
     responder
   );
@@ -119,7 +119,7 @@ function createUsersWithArrayInput(req, res) {
   }
 
   // Execute
-  impl.createUsersWithArrayInput(
+  return impl.createUsersWithArrayInput(
     body,
     responder
   );
@@ -160,7 +160,7 @@ function createUsersWithListInput(req, res) {
   }
 
   // Execute
-  impl.createUsersWithListInput(
+  return impl.createUsersWithListInput(
     body,
     responder
   );
@@ -207,7 +207,7 @@ function loginUser(req, res) {
   }
 
   // Execute
-  impl.loginUser(
+  return impl.loginUser(
     username,
     password,
     responder
@@ -249,7 +249,7 @@ function logoutUser(req, res) {
   }
 
   // Execute
-  impl.logoutUser(
+  return impl.logoutUser(
     responder
   );
 }
@@ -301,7 +301,7 @@ function getUserByName(req, res) {
   }
 
   // Execute
-  impl.getUserByName(
+  return impl.getUserByName(
     username,
     responder
   );
@@ -351,7 +351,7 @@ function updateUser(req, res) {
   }
 
   // Execute
-  impl.updateUser(
+  return impl.updateUser(
     username,
     body,
     responder
@@ -401,7 +401,7 @@ function deleteUser(req, res) {
   }
 
   // Execute
-  impl.deleteUser(
+  return impl.deleteUser(
     username,
     responder
   );

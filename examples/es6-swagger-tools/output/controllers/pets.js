@@ -76,7 +76,7 @@ function addPet(req, res) {
   }
 
   // Execute
-  impl.addPet(
+  return impl.addPet(
     body,
     responder
   );
@@ -120,7 +120,7 @@ function updatePet(req, res) {
   }
 
   // Execute
-  impl.updatePet(
+  return impl.updatePet(
     body,
     responder
   );
@@ -162,7 +162,7 @@ function findPetsByStatus(req, res) {
   }
 
   // Execute
-  impl.findPetsByStatus(
+  return impl.findPetsByStatus(
     status,
     responder
   );
@@ -204,7 +204,7 @@ function findPetsByTags(req, res) {
   }
 
   // Execute
-  impl.findPetsByTags(
+  return impl.findPetsByTags(
     tags,
     responder
   );
@@ -257,7 +257,7 @@ function getPetById(req, res) {
   }
 
   // Execute
-  impl.getPetById(
+  return impl.getPetById(
     petId,
     responder
   );
@@ -310,7 +310,7 @@ function updatePetWithForm(req, res) {
   }
 
   // Execute
-  impl.updatePetWithForm(
+  return impl.updatePetWithForm(
     petId,
     name,
     status,
@@ -361,7 +361,7 @@ function deletePet(req, res) {
   }
 
   // Execute
-  impl.deletePet(
+  return impl.deletePet(
     api_key,
     petId,
     responder

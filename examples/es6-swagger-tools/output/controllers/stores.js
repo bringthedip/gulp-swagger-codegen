@@ -82,7 +82,7 @@ function placeOrder(req, res) {
   }
 
   // Execute
-  impl.placeOrder(
+  return impl.placeOrder(
     body,
     responder
   );
@@ -135,7 +135,7 @@ function getOrderById(req, res) {
   }
 
   // Execute
-  impl.getOrderById(
+  return impl.getOrderById(
     orderId,
     responder
   );
@@ -184,7 +184,7 @@ function deleteOrder(req, res) {
   }
 
   // Execute
-  impl.deleteOrder(
+  return impl.deleteOrder(
     orderId,
     responder
   );
