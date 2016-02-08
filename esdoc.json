@@ -1,0 +1,12 @@
+{
+  "title": "gulp-swagger-codegen",
+  "package": "./package.json",
+  "source": "./task",
+  "destination": "./docs/code",
+  "unexportIdentifier": true,
+  "undocumentIdentifier": false,
+  "test": {
+    "type": "mocha",
+    "source": "./tst"
+  }
+}
