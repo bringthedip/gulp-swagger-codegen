@@ -195,6 +195,7 @@ function generateTask(taskOptions) {
 
     // All done
     debug('Finished file: %s', file.path);
+    return callback();
   }
 
   debug('Returning stream processor instance to pipeline');

@@ -65,11 +65,15 @@ function {{operationId}}(req, res) {
   {{#if schema}}
   {{#with schema}}
   {{#withDef $ref ../../../definitionMap}}
-  const {{../../name}} = new {{definitionName}}(req.swagger.params.{{../../name}});
+  const {{../../name}}Generator = () => {
+    const TypeDefinition = require('{{#with ../../../../options}}{{defsRelativeToController}}{{/with}}/{{#lowercase}}{{definitionName}}{{/lowercase}}');
+    return new TypeDefinition(req.swagger.params.{{../../name}}.value);
+  };
+  const {{../../name}} = {{../../name}}Generator(); 
   {{/withDef}}
   {{/with}}
   {{else}}
-  const {{name}} = req.swagger.params.{{name}};
+  const {{name}} = req.swagger.params.{{name}}.value;
   {{/if}}
   {{/each}}
 
@@ -83,7 +87,17 @@ function {{operationId}}(req, res) {
     {{#property . "x-gulp-swagger-codegen-outcome" "resultName"}}
     // Handle status {{@key}} [{{resultName}}]
     {{resultName}}: function end{{#upperFirst}}{{resultName}}{{/upperFirst}}(result) {
+      {{#if schema}}
+      {{#with schema}}
+      {{#withDef $ref ../../../definitionMap}}
+      const {{#upperFirst}}{{definitionName}}{{/upperFirst}} = require('{{#with ../../../../options}}{{defsRelativeToController}}{{/with}}/{{#lowercase}}{{definitionName}}{{/lowercase}}');
+      const typedResult = new {{#upperFirst}}{{definitionName}}{{/upperFirst}}(result);
+      {{/withDef}}
+      {{/with}}
+      res.json(typedResult || {}, {{#compare @key "===" "default"}}200{{else}}{{@key}}{{/compare}});
+      {{else}}
       res.json(result || {}, {{#compare @key "===" "default"}}200{{else}}{{@key}}{{/compare}});
+      {{/if}}
     },
     {{else}}
     // Result code {{@key}} does not have a "x-gulp-swagger-codegen-outcome

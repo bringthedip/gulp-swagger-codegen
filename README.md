@@ -290,6 +290,9 @@ Here's an example config section:
           extension: '.js',
           operations: ['get', 'put', 'post', 'delete'],
           implementationPath: '../implementation',
+          // Extension properties you can use inside templates
+          // for example, the bellow is only for the swagger-tools example
+          defsRelativeToController: '../definitions' // relative path of /definitions vs controller output for requires.
         },
       },
 

@@ -22,6 +22,7 @@ class {{definitionName}} {
       return;
     }
 
+    {{#compare type "===" "object"}}
     {{#if properties}}
     // Load property values from input object
     {{/if}}
@@ -50,7 +51,12 @@ class {{definitionName}} {
     }{{else}}{{/arrayContains}}
     {{/compare}}
     {{/each}}
+    {{else}}
+    // Direct value storage
+    this._value = input;
+    {{/compare}}
   }
+  {{#compare type "===" "object"}}
   {{#each properties}}
 
   /**
@@ -74,18 +80,36 @@ class {{definitionName}} {
     this._{{@key}} = newVal;
   }
   {{/each}}
+  {{else}}
+  /**
+   * Get the value of this entity.
+   **/
+  get value() {
+    return this._value;
+  }
 
+  /**
+   * Set the value of this entity
+   **/
+  set value(newValue) {
+    this._value = newValue;
+  }
+  {{/compare}}
   /**
    * Convert the current instance to a plain object
    * for serialization purposes.
    * @returns {object} - Plain object.
    **/
   toJSON() {
+    {{#compare type "===" "object"}}
     const result = {};
     {{#each properties}}
     result.{{@key}} = this._{{@key}};
     {{/each}}
     return result;
+    {{else}}
+    return this._value;
+    {{/compare}}
   }
 
   /**
