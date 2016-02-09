@@ -146,7 +146,6 @@ class Pet {
   set status(newVal) {
     this._status = newVal;
   }
-
   /**
    * Convert the current instance to a plain object
    * for serialization purposes.

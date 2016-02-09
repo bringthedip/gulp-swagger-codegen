@@ -53,7 +53,11 @@ function addPet(req, res) {
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  const body = new Pet(req.swagger.params.body);
+  const bodyGenerator = () => {
+    const TypeDefinition = require('/pet');
+    return new TypeDefinition(req.swagger.params.body.value);
+  };
+  const body = bodyGenerator(); 
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -93,7 +97,11 @@ function updatePet(req, res) {
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  const body = new Pet(req.swagger.params.body);
+  const bodyGenerator = () => {
+    const TypeDefinition = require('/pet');
+    return new TypeDefinition(req.swagger.params.body.value);
+  };
+  const body = bodyGenerator(); 
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -137,7 +145,7 @@ function findPetsByStatus(req, res) {
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  const status = req.swagger.params.status;
+  const status = req.swagger.params.status.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -179,7 +187,7 @@ function findPetsByTags(req, res) {
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  const tags = req.swagger.params.tags;
+  const tags = req.swagger.params.tags.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -224,7 +232,7 @@ function getPetById(req, res) {
   if (req.swagger.params.petId === null || req.swagger.params.petId === undefined) {
     throw new Error('Cannot process : parameter petId cannot be null.');
   }
-  const petId = req.swagger.params.petId;
+  const petId = req.swagger.params.petId.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -234,7 +242,9 @@ function getPetById(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      res.json(result || {}, 200);
+      const Pet = require('/pet');
+      const typedResult = new Pet(result);
+      res.json(typedResult || {}, 200);
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
@@ -283,9 +293,9 @@ function updatePetWithForm(req, res) {
   if (req.swagger.params.status === null || req.swagger.params.status === undefined) {
     throw new Error('Cannot process : parameter status cannot be null.');
   }
-  const petId = req.swagger.params.petId;
-  const name = req.swagger.params.name;
-  const status = req.swagger.params.status;
+  const petId = req.swagger.params.petId.value;
+  const name = req.swagger.params.name.value;
+  const status = req.swagger.params.status.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -335,8 +345,8 @@ function deletePet(req, res) {
   if (req.swagger.params.petId === null || req.swagger.params.petId === undefined) {
     throw new Error('Cannot process : parameter petId cannot be null.');
   }
-  const api_key = req.swagger.params.api_key;
-  const petId = req.swagger.params.petId;
+  const api_key = req.swagger.params.api_key.value;
+  const petId = req.swagger.params.petId.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome

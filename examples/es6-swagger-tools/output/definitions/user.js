@@ -170,7 +170,6 @@ class User {
   set userStatus(newVal) {
     this._userStatus = newVal;
   }
-
   /**
    * Convert the current instance to a plain object
    * for serialization purposes.

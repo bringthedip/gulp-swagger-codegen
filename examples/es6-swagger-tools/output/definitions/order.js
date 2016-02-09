@@ -132,7 +132,6 @@ class Order {
   set complete(newVal) {
     this._complete = newVal;
   }
-
   /**
    * Convert the current instance to a plain object
    * for serialization purposes.

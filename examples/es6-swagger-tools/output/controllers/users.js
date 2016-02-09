@@ -53,7 +53,11 @@ function createUser(req, res) {
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  const body = new User(req.swagger.params.body);
+  const bodyGenerator = () => {
+    const TypeDefinition = require('/user');
+    return new TypeDefinition(req.swagger.params.body.value);
+  };
+  const body = bodyGenerator(); 
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -177,8 +181,8 @@ function loginUser(req, res) {
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  const username = req.swagger.params.username;
-  const password = req.swagger.params.password;
+  const username = req.swagger.params.username.value;
+  const password = req.swagger.params.password.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -188,7 +192,7 @@ function loginUser(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      res.json(result || {}, 200);
+      res.json(typedResult || {}, 200);
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
@@ -268,7 +272,7 @@ function getUserByName(req, res) {
   if (req.swagger.params.username === null || req.swagger.params.username === undefined) {
     throw new Error('Cannot process : parameter username cannot be null.');
   }
-  const username = req.swagger.params.username;
+  const username = req.swagger.params.username.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -278,7 +282,9 @@ function getUserByName(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      res.json(result || {}, 200);
+      const User = require('/user');
+      const typedResult = new User(result);
+      res.json(typedResult || {}, 200);
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
@@ -321,8 +327,12 @@ function updateUser(req, res) {
   if (req.swagger.params.username === null || req.swagger.params.username === undefined) {
     throw new Error('Cannot process : parameter username cannot be null.');
   }
-  const username = req.swagger.params.username;
-  const body = new User(req.swagger.params.body);
+  const username = req.swagger.params.username.value;
+  const bodyGenerator = () => {
+    const TypeDefinition = require('/user');
+    return new TypeDefinition(req.swagger.params.body.value);
+  };
+  const body = bodyGenerator(); 
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -372,7 +382,7 @@ function deleteUser(req, res) {
   if (req.swagger.params.username === null || req.swagger.params.username === undefined) {
     throw new Error('Cannot process : parameter username cannot be null.');
   }
-  const username = req.swagger.params.username;
+  const username = req.swagger.params.username.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome

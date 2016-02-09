@@ -53,7 +53,11 @@ function placeOrder(req, res) {
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  const body = new Order(req.swagger.params.body);
+  const bodyGenerator = () => {
+    const TypeDefinition = require('/order');
+    return new TypeDefinition(req.swagger.params.body.value);
+  };
+  const body = bodyGenerator(); 
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -63,7 +67,9 @@ function placeOrder(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      res.json(result || {}, 200);
+      const Order = require('/order');
+      const typedResult = new Order(result);
+      res.json(typedResult || {}, 200);
     },
     // Handle status 400 [invalid]
     invalid: function endInvalid(result) {
@@ -102,7 +108,7 @@ function getOrderById(req, res) {
   if (req.swagger.params.orderId === null || req.swagger.params.orderId === undefined) {
     throw new Error('Cannot process : parameter orderId cannot be null.');
   }
-  const orderId = req.swagger.params.orderId;
+  const orderId = req.swagger.params.orderId.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -112,7 +118,9 @@ function getOrderById(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      res.json(result || {}, 200);
+      const Order = require('/order');
+      const typedResult = new Order(result);
+      res.json(typedResult || {}, 200);
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
@@ -155,7 +163,7 @@ function deleteOrder(req, res) {
   if (req.swagger.params.orderId === null || req.swagger.params.orderId === undefined) {
     throw new Error('Cannot process : parameter orderId cannot be null.');
   }
-  const orderId = req.swagger.params.orderId;
+  const orderId = req.swagger.params.orderId.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome

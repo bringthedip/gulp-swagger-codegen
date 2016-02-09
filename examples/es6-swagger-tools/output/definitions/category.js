@@ -56,7 +56,6 @@ class Category {
   set name(newVal) {
     this._name = newVal;
   }
-
   /**
    * Convert the current instance to a plain object
    * for serialization purposes.
