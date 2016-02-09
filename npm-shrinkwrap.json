@@ -1,6 +1,6 @@
 {
   "name": "gulp-swagger-codegen",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "dependencies": {
     "abbrev": {
       "version": "1.0.7",
@@ -436,23 +436,6 @@
       "version": "0.0.2",
       "from": "duplexer2@0.0.2",
       "resolved": "https://registry.npmjs.org/duplexer2/-/duplexer2-0.0.2.tgz"
-    },
-    "duplexify": {
-      "version": "3.4.2",
-      "from": "duplexify@>=3.2.0 <4.0.0",
-      "resolved": "https://registry.npmjs.org/duplexify/-/duplexify-3.4.2.tgz",
-      "dependencies": {
-        "end-of-stream": {
-          "version": "1.0.0",
-          "from": "end-of-stream@1.0.0",
-          "resolved": "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.0.0.tgz"
-        },
-        "readable-stream": {
-          "version": "2.0.5",
-          "from": "readable-stream@>=2.0.0 <3.0.0",
-          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.0.5.tgz"
-        }
-      }
     },
     "ecc-jsbn": {
       "version": "0.1.1",
@@ -960,83 +943,6 @@
       "version": "1.0.0",
       "from": "gulplog@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/gulplog/-/gulplog-1.0.0.tgz"
-    },
-    "guppy-cli": {
-      "version": "0.4.0",
-      "from": "guppy-cli@>=0.4.0 <0.5.0",
-      "resolved": "https://registry.npmjs.org/guppy-cli/-/guppy-cli-0.4.0.tgz",
-      "dependencies": {
-        "async": {
-          "version": "0.9.2",
-          "from": "async@>=0.9.0 <0.10.0",
-          "resolved": "https://registry.npmjs.org/async/-/async-0.9.2.tgz"
-        },
-        "clone": {
-          "version": "0.2.0",
-          "from": "clone@>=0.2.0 <0.3.0",
-          "resolved": "https://registry.npmjs.org/clone/-/clone-0.2.0.tgz"
-        },
-        "glob-stream": {
-          "version": "4.1.1",
-          "from": "glob-stream@>=4.0.1 <5.0.0",
-          "resolved": "https://registry.npmjs.org/glob-stream/-/glob-stream-4.1.1.tgz"
-        },
-        "glob-watcher": {
-          "version": "0.0.8",
-          "from": "glob-watcher@>=0.0.8 <0.0.9",
-          "resolved": "https://registry.npmjs.org/glob-watcher/-/glob-watcher-0.0.8.tgz"
-        },
-        "graceful-fs": {
-          "version": "3.0.8",
-          "from": "graceful-fs@>=3.0.0 <4.0.0",
-          "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-3.0.8.tgz"
-        },
-        "object-assign": {
-          "version": "2.1.1",
-          "from": "object-assign@>=2.0.0 <3.0.0",
-          "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-2.1.1.tgz"
-        },
-        "readable-stream": {
-          "version": "1.0.33",
-          "from": "readable-stream@>=1.0.33-1 <1.1.0-0",
-          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz"
-        },
-        "shelljs": {
-          "version": "0.4.0",
-          "from": "shelljs@>=0.4.0 <0.5.0",
-          "resolved": "https://registry.npmjs.org/shelljs/-/shelljs-0.4.0.tgz"
-        },
-        "strip-bom": {
-          "version": "1.0.0",
-          "from": "strip-bom@>=1.0.0 <2.0.0",
-          "resolved": "https://registry.npmjs.org/strip-bom/-/strip-bom-1.0.0.tgz"
-        },
-        "through2": {
-          "version": "0.6.5",
-          "from": "through2@>=0.6.1 <0.7.0",
-          "resolved": "https://registry.npmjs.org/through2/-/through2-0.6.5.tgz"
-        },
-        "unique-stream": {
-          "version": "2.2.0",
-          "from": "unique-stream@>=2.0.2 <3.0.0",
-          "resolved": "https://registry.npmjs.org/unique-stream/-/unique-stream-2.2.0.tgz"
-        },
-        "vinyl": {
-          "version": "0.4.6",
-          "from": "vinyl@>=0.4.0 <0.5.0",
-          "resolved": "https://registry.npmjs.org/vinyl/-/vinyl-0.4.6.tgz"
-        },
-        "vinyl-fs": {
-          "version": "1.0.0",
-          "from": "vinyl-fs@>=1.0.0 <2.0.0",
-          "resolved": "https://registry.npmjs.org/vinyl-fs/-/vinyl-fs-1.0.0.tgz"
-        }
-      }
-    },
-    "guppy-pre-commit": {
-      "version": "0.3.0",
-      "from": "guppy-pre-commit@>=0.3.0 <0.4.0",
-      "resolved": "https://registry.npmjs.org/guppy-pre-commit/-/guppy-pre-commit-0.3.0.tgz"
     },
     "handlebars": {
       "version": "4.0.5",
@@ -1627,11 +1533,6 @@
       "from": "map-obj@>=1.0.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/map-obj/-/map-obj-1.0.1.tgz"
     },
-    "map-stream": {
-      "version": "0.0.5",
-      "from": "map-stream@0.0.5",
-      "resolved": "https://registry.npmjs.org/map-stream/-/map-stream-0.0.5.tgz"
-    },
     "marked": {
       "version": "0.3.5",
       "from": "marked@0.3.5",
@@ -1646,23 +1547,6 @@
           "version": "4.0.1",
           "from": "object-assign@>=4.0.1 <5.0.0",
           "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.0.1.tgz"
-        }
-      }
-    },
-    "merge-stream": {
-      "version": "0.1.8",
-      "from": "merge-stream@>=0.1.7 <0.2.0",
-      "resolved": "https://registry.npmjs.org/merge-stream/-/merge-stream-0.1.8.tgz",
-      "dependencies": {
-        "readable-stream": {
-          "version": "1.0.33",
-          "from": "readable-stream@>=1.0.33-1 <1.1.0-0",
-          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-1.0.33.tgz"
-        },
-        "through2": {
-          "version": "0.6.5",
-          "from": "through2@>=0.6.1 <0.7.0",
-          "resolved": "https://registry.npmjs.org/through2/-/through2-0.6.5.tgz"
         }
       }
     },
@@ -2153,11 +2037,6 @@
           "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.0.5.tgz"
         }
       }
-    },
-    "through2-filter": {
-      "version": "2.0.0",
-      "from": "through2-filter@>=2.0.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/through2-filter/-/through2-filter-2.0.0.tgz"
     },
     "tildify": {
       "version": "1.1.2",
