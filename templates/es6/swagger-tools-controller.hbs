@@ -15,7 +15,7 @@ function validateSwaggerRequest(req, res) {
   } else if (!res) {
     throw new Error('res (Response object) cannot be null');
   } else if (!(req.swagger)) {
-    throw new Error("req.swagger (Swagger State) cannot be null");
+    throw new Error('req.swagger (Swagger State) cannot be null');
   } else if (!(req.swagger.params)) {
     throw new Error('req.swagger.params (Incoming parameters array) cannot be null');
   }
@@ -104,7 +104,7 @@ function {{operationId}}(req, res) {
     // {{@key}} = {{#property . "x-gulp-swagger-codegen-outcome" propName}}{{else}}Not mapped{{/property}}
     {{/property}}
   {{/each}}
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation({{#lowerFirst}}{{../groupKey}}{{/lowerFirst}}Implementation);
