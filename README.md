@@ -368,5 +368,5 @@ manually use the `res` property from the responder for this scenario if you wish
 
 ## Contributions and Licensing
 This code is MIT licensed and free for re-use in your projects and for forking. 
-Whilst I'll do my best to maintain it for the forseeable future, you're mor ethan
+Whilst I'll do my best to maintain it for the forseeable future, you're more than
 welcome to submit feature requests or pull requests.

@@ -15,7 +15,7 @@ function validateSwaggerRequest(req, res) {
   } else if (!res) {
     throw new Error('res (Response object) cannot be null');
   } else if (!(req.swagger)) {
-    throw new Error("req.swagger (Swagger State) cannot be null");
+    throw new Error('req.swagger (Swagger State) cannot be null');
   } else if (!(req.swagger.params)) {
     throw new Error('req.swagger.params (Incoming parameters array) cannot be null');
   }
@@ -34,6 +34,10 @@ function resolveImplementation(impl) {
 
   // Call generator function, if required
   if (typeof impl === 'function') {
+    // Determine if we are an ES6 class, if so, generate via new()
+    if (/^\s*class\s+/.test(impl.toString())) {
+      return new impl();
+    }
     return impl();
   }
 
@@ -75,7 +79,7 @@ function placeOrder(req, res) {
     invalid: function endInvalid(result) {
       res.json(result || {}, 400);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(storesImplementation);
@@ -130,7 +134,7 @@ function getOrderById(req, res) {
     notFound: function endNotFound(result) {
       res.json(result || {}, 404);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(storesImplementation);
@@ -179,7 +183,7 @@ function deleteOrder(req, res) {
     notFound: function endNotFound(result) {
       res.json(result || {}, 404);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(storesImplementation);

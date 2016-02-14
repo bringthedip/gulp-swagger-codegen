@@ -15,7 +15,7 @@ function validateSwaggerRequest(req, res) {
   } else if (!res) {
     throw new Error('res (Response object) cannot be null');
   } else if (!(req.swagger)) {
-    throw new Error("req.swagger (Swagger State) cannot be null");
+    throw new Error('req.swagger (Swagger State) cannot be null');
   } else if (!(req.swagger.params)) {
     throw new Error('req.swagger.params (Incoming parameters array) cannot be null');
   }
@@ -34,6 +34,10 @@ function resolveImplementation(impl) {
 
   // Call generator function, if required
   if (typeof impl === 'function') {
+    // Determine if we are an ES6 class, if so, generate via new()
+    if (/^\s*class\s+/.test(impl.toString())) {
+      return new impl();
+    }
     return impl();
   }
 
@@ -67,7 +71,7 @@ function addPet(req, res) {
     res,
     // Result code 405 does not have a "x-gulp-swagger-codegen-outcome
     // 405 = Not mapped
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(petsImplementation);
@@ -115,7 +119,7 @@ function updatePet(req, res) {
     // 404 = Not mapped
     // Result code 405 does not have a "x-gulp-swagger-codegen-outcome
     // 405 = Not mapped
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(petsImplementation);
@@ -157,7 +161,7 @@ function findPetsByStatus(req, res) {
     // 200 = Not mapped
     // Result code 400 does not have a "x-gulp-swagger-codegen-outcome
     // 400 = Not mapped
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(petsImplementation);
@@ -199,7 +203,7 @@ function findPetsByTags(req, res) {
     // 200 = Not mapped
     // Result code 400 does not have a "x-gulp-swagger-codegen-outcome
     // 400 = Not mapped
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(petsImplementation);
@@ -254,7 +258,7 @@ function getPetById(req, res) {
     notFound: function endNotFound(result) {
       res.json(result || {}, 404);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(petsImplementation);
@@ -307,7 +311,7 @@ function updatePetWithForm(req, res) {
     invalidInput: function endInvalidInput(result) {
       res.json(result || {}, 405);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(petsImplementation);
@@ -358,7 +362,7 @@ function deletePet(req, res) {
     invalidPet: function endInvalidPet(result) {
       res.json(result || {}, 400);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(petsImplementation);

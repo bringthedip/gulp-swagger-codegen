@@ -34,6 +34,10 @@ function resolveImplementation(impl) {
 
   // Call generator function, if required
   if (typeof impl === 'function') {
+    // Determine if we are an ES6 class, if so, generate via new()
+    if (/^\s*class\s+/.test(impl.toString())) {
+      return new impl();
+    }
     return impl();
   }
 

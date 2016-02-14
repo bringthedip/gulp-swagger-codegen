@@ -15,7 +15,7 @@ function validateSwaggerRequest(req, res) {
   } else if (!res) {
     throw new Error('res (Response object) cannot be null');
   } else if (!(req.swagger)) {
-    throw new Error("req.swagger (Swagger State) cannot be null");
+    throw new Error('req.swagger (Swagger State) cannot be null');
   } else if (!(req.swagger.params)) {
     throw new Error('req.swagger.params (Incoming parameters array) cannot be null');
   }
@@ -34,6 +34,10 @@ function resolveImplementation(impl) {
 
   // Call generator function, if required
   if (typeof impl === 'function') {
+    // Determine if we are an ES6 class, if so, generate via new()
+    if (/^\s*class\s+/.test(impl.toString())) {
+      return new impl();
+    }
     return impl();
   }
 
@@ -69,7 +73,7 @@ function createUser(req, res) {
     success: function endSuccess(result) {
       res.json(result || {}, 200);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(usersImplementation);
@@ -110,7 +114,7 @@ function createUsersWithArrayInput(req, res) {
     success: function endSuccess(result) {
       res.json(result || {}, 200);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(usersImplementation);
@@ -151,7 +155,7 @@ function createUsersWithListInput(req, res) {
     success: function endSuccess(result) {
       res.json(result || {}, 200);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(usersImplementation);
@@ -198,7 +202,7 @@ function loginUser(req, res) {
     invalidId: function endInvalidId(result) {
       res.json(result || {}, 400);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(usersImplementation);
@@ -240,7 +244,7 @@ function logoutUser(req, res) {
     success: function endSuccess(result) {
       res.json(result || {}, 200);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(usersImplementation);
@@ -294,7 +298,7 @@ function getUserByName(req, res) {
     notFound: function endNotFound(result) {
       res.json(result || {}, 404);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(usersImplementation);
@@ -348,7 +352,7 @@ function updateUser(req, res) {
     notFound: function endNotFound(result) {
       res.json(result || {}, 404);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(usersImplementation);
@@ -398,7 +402,7 @@ function deleteUser(req, res) {
     notFound: function endNotFound(result) {
       res.json(result || {}, 404);
     },
-  }
+  };
 
   // Validate implementation presence
   const impl = resolveImplementation(usersImplementation);
