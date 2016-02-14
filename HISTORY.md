@@ -1,5 +1,15 @@
 # Release Note History
 
+## Version 0.0.7
+Updated dependencies:
+
+  - lodash (4.2.1 to 4.3.0)
+  - through2 (2.0.0 to 2.0.1)
+  - eslint-config-airbnb (5.0.0 to 5.0.1)
+  - gulp (3.9.0 to 3.9.1)
+
+No functional changes to behavior or generated code.
+
 ## Version 0.0.6
 Fixed some minor issues in the ES6 code generation template for Swagger-tools:
 
