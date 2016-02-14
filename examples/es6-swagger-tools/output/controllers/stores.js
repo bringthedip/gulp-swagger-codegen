@@ -77,7 +77,13 @@ function placeOrder(req, res) {
     },
     // Handle status 400 [invalid]
     invalid: function endInvalid(result) {
-      res.json(result || {}, 400);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 400;
+      res.end();
     },
   };
 
@@ -128,11 +134,23 @@ function getOrderById(req, res) {
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
-      res.json(result || {}, 400);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 400;
+      res.end();
     },
     // Handle status 404 [notFound]
     notFound: function endNotFound(result) {
-      res.json(result || {}, 404);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 404;
+      res.end();
     },
   };
 
@@ -177,11 +195,23 @@ function deleteOrder(req, res) {
     res,
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
-      res.json(result || {}, 400);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 400;
+      res.end();
     },
     // Handle status 404 [notFound]
     notFound: function endNotFound(result) {
-      res.json(result || {}, 404);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 404;
+      res.end();
     },
   };
 

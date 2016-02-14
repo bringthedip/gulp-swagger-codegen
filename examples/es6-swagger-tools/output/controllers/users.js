@@ -71,7 +71,13 @@ function createUser(req, res) {
     res,
     // Handle status default [success]
     success: function endSuccess(result) {
-      res.json(result || {}, 200);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 200;
+      res.end();
     },
   };
 
@@ -112,7 +118,13 @@ function createUsersWithArrayInput(req, res) {
     res,
     // Handle status default [success]
     success: function endSuccess(result) {
-      res.json(result || {}, 200);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 200;
+      res.end();
     },
   };
 
@@ -153,7 +165,13 @@ function createUsersWithListInput(req, res) {
     res,
     // Handle status default [success]
     success: function endSuccess(result) {
-      res.json(result || {}, 200);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 200;
+      res.end();
     },
   };
 
@@ -200,7 +218,13 @@ function loginUser(req, res) {
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
-      res.json(result || {}, 400);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 400;
+      res.end();
     },
   };
 
@@ -242,7 +266,13 @@ function logoutUser(req, res) {
     res,
     // Handle status default [success]
     success: function endSuccess(result) {
-      res.json(result || {}, 200);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 200;
+      res.end();
     },
   };
 
@@ -292,11 +322,23 @@ function getUserByName(req, res) {
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
-      res.json(result || {}, 400);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 400;
+      res.end();
     },
     // Handle status 404 [notFound]
     notFound: function endNotFound(result) {
-      res.json(result || {}, 404);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 404;
+      res.end();
     },
   };
 
@@ -346,11 +388,23 @@ function updateUser(req, res) {
     res,
     // Handle status 400 [invalidUser]
     invalidUser: function endInvalidUser(result) {
-      res.json(result || {}, 400);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 400;
+      res.end();
     },
     // Handle status 404 [notFound]
     notFound: function endNotFound(result) {
-      res.json(result || {}, 404);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 404;
+      res.end();
     },
   };
 
@@ -396,11 +450,23 @@ function deleteUser(req, res) {
     res,
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
-      res.json(result || {}, 400);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 400;
+      res.end();
     },
     // Handle status 404 [notFound]
     notFound: function endNotFound(result) {
-      res.json(result || {}, 404);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 404;
+      res.end();
     },
   };
 

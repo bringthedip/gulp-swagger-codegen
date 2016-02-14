@@ -100,7 +100,18 @@ function {{operationId}}(req, res) {
       {{/with}}
       res.json(typedResult || {}, {{#compare @key "===" "default"}}200{{else}}{{@key}}{{/compare}});
       {{else}}
+      {{#if type}}
+      // Basic typed result ({{type}})
       res.json(result || {}, {{#compare @key "===" "default"}}200{{else}}{{@key}}{{/compare}});
+      {{else}}
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = {{#compare @key "===" "default"}}200{{else}}{{@key}}{{/compare}};
+      res.end();
+      {{/if}}
       {{/if}}
     },
     {{else}}

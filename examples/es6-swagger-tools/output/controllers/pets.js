@@ -252,11 +252,23 @@ function getPetById(req, res) {
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
-      res.json(result || {}, 400);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 400;
+      res.end();
     },
     // Handle status 404 [notFound]
     notFound: function endNotFound(result) {
-      res.json(result || {}, 404);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 404;
+      res.end();
     },
   };
 
@@ -309,7 +321,13 @@ function updatePetWithForm(req, res) {
     res,
     // Handle status 405 [invalidInput]
     invalidInput: function endInvalidInput(result) {
-      res.json(result || {}, 405);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 405;
+      res.end();
     },
   };
 
@@ -360,7 +378,13 @@ function deletePet(req, res) {
     res,
     // Handle status 400 [invalidPet]
     invalidPet: function endInvalidPet(result) {
-      res.json(result || {}, 400);
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 400;
+      res.end();
     },
   };
 

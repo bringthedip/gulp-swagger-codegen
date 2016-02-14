@@ -1,5 +1,11 @@
 # Release Note History
 
+## Version 0.0.8
+Updated templates:
+
+  - `swagger-tools-controller.hbs`
+      - Support for void return properties on operations.
+
 ## Version 0.0.7
 Updated dependencies:
 
