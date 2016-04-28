@@ -1,6 +1,6 @@
 {
   "name": "gulp-swagger-codegen",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "dependencies": {
     "abbrev": {
       "version": "1.0.7",
