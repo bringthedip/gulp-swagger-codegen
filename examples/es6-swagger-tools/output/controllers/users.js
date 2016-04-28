@@ -24,12 +24,18 @@ function validateSwaggerRequest(req, res) {
 /**
  * Resolve the implementation of this controller
  * @param {object} impl     - Implementation object
+ * @param {object} req      - HTTP Request
  * @returns                 - Same object if object, calls function if function
  **/
-function resolveImplementation(impl) {
+function resolveImplementation(impl, req) {
   // Validate arguments
   if (!impl) {
     throw new Error('Cannot resolve implementation. require() returned null');
+  }
+
+  // If we've got a resolver, then use that.
+  if (req && req.resolver && typeof req.resolver === 'function') {
+    return req.resolver(impl);
   }
 
   // Call generator function, if required
@@ -82,7 +88,7 @@ function createUser(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(usersImplementation);
+  const impl = resolveImplementation(usersImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of users');
   } else if (!impl.createUser) {
@@ -129,7 +135,7 @@ function createUsersWithArrayInput(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(usersImplementation);
+  const impl = resolveImplementation(usersImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of users');
   } else if (!impl.createUsersWithArrayInput) {
@@ -176,7 +182,7 @@ function createUsersWithListInput(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(usersImplementation);
+  const impl = resolveImplementation(usersImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of users');
   } else if (!impl.createUsersWithListInput) {
@@ -229,7 +235,7 @@ function loginUser(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(usersImplementation);
+  const impl = resolveImplementation(usersImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of users');
   } else if (!impl.loginUser) {
@@ -277,7 +283,7 @@ function logoutUser(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(usersImplementation);
+  const impl = resolveImplementation(usersImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of users');
   } else if (!impl.logoutUser) {
@@ -343,7 +349,7 @@ function getUserByName(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(usersImplementation);
+  const impl = resolveImplementation(usersImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of users');
   } else if (!impl.getUserByName) {
@@ -409,7 +415,7 @@ function updateUser(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(usersImplementation);
+  const impl = resolveImplementation(usersImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of users');
   } else if (!impl.updateUser) {
@@ -471,7 +477,7 @@ function deleteUser(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(usersImplementation);
+  const impl = resolveImplementation(usersImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of users');
   } else if (!impl.deleteUser) {

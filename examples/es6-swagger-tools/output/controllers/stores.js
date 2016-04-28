@@ -24,12 +24,18 @@ function validateSwaggerRequest(req, res) {
 /**
  * Resolve the implementation of this controller
  * @param {object} impl     - Implementation object
+ * @param {object} req      - HTTP Request
  * @returns                 - Same object if object, calls function if function
  **/
-function resolveImplementation(impl) {
+function resolveImplementation(impl, req) {
   // Validate arguments
   if (!impl) {
     throw new Error('Cannot resolve implementation. require() returned null');
+  }
+
+  // If we've got a resolver, then use that.
+  if (req && req.resolver && typeof req.resolver === 'function') {
+    return req.resolver(impl);
   }
 
   // Call generator function, if required
@@ -88,7 +94,7 @@ function placeOrder(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(storesImplementation);
+  const impl = resolveImplementation(storesImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of stores');
   } else if (!impl.placeOrder) {
@@ -155,7 +161,7 @@ function getOrderById(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(storesImplementation);
+  const impl = resolveImplementation(storesImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of stores');
   } else if (!impl.getOrderById) {
@@ -216,7 +222,7 @@ function deleteOrder(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(storesImplementation);
+  const impl = resolveImplementation(storesImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of stores');
   } else if (!impl.deleteOrder) {

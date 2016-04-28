@@ -24,12 +24,18 @@ function validateSwaggerRequest(req, res) {
 /**
  * Resolve the implementation of this controller
  * @param {object} impl     - Implementation object
+ * @param {object} req      - HTTP Request
  * @returns                 - Same object if object, calls function if function
  **/
-function resolveImplementation(impl) {
+function resolveImplementation(impl, req) {
   // Validate arguments
   if (!impl) {
     throw new Error('Cannot resolve implementation. require() returned null');
+  }
+
+  // If we've got a resolver, then use that.
+  if (req && req.resolver && typeof req.resolver === 'function') {
+    return req.resolver(impl);
   }
 
   // Call generator function, if required
@@ -74,7 +80,7 @@ function addPet(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(petsImplementation);
+  const impl = resolveImplementation(petsImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of pets');
   } else if (!impl.addPet) {
@@ -122,7 +128,7 @@ function updatePet(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(petsImplementation);
+  const impl = resolveImplementation(petsImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of pets');
   } else if (!impl.updatePet) {
@@ -164,7 +170,7 @@ function findPetsByStatus(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(petsImplementation);
+  const impl = resolveImplementation(petsImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of pets');
   } else if (!impl.findPetsByStatus) {
@@ -206,7 +212,7 @@ function findPetsByTags(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(petsImplementation);
+  const impl = resolveImplementation(petsImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of pets');
   } else if (!impl.findPetsByTags) {
@@ -273,7 +279,7 @@ function getPetById(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(petsImplementation);
+  const impl = resolveImplementation(petsImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of pets');
   } else if (!impl.getPetById) {
@@ -332,7 +338,7 @@ function updatePetWithForm(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(petsImplementation);
+  const impl = resolveImplementation(petsImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of pets');
   } else if (!impl.updatePetWithForm) {
@@ -389,7 +395,7 @@ function deletePet(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(petsImplementation);
+  const impl = resolveImplementation(petsImplementation, req);
   if (!impl) {
     throw new Error('Cannot resolve implementation of pets');
   } else if (!impl.deletePet) {
