@@ -1,5 +1,8 @@
 # Release Note History
 
+## Version 1.0.0
+Because it's basically 'done'/good-enough for common cases.
+
 ## Version 0.0.8
 Updated templates:
 
