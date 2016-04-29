@@ -137,11 +137,17 @@ function {{operationId}}(req, res) {
     throw new Error('Implementation is not a function: {{operationId}} for {{../groupKey}}');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.{{operationId}}(
 {{#each parameters}}    {{name}},
 {{/each}}
-    responder
+    responder,
+    req,
+    res
   );
 }
 {{/each}}
