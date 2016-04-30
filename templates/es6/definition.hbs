@@ -37,7 +37,23 @@ class {{definitionName}} {
     {{else}}
     for (const subItem of (input.{{@key}} || [])) {
     {{/arrayContains}}
+      {{#with items}}
+      {{#if type}}
+      // Primative/{{type}} mapping.
+      this._{{@key}}.push(subItem);
+      {{else}}
+      {{#withDef $ref ../../../definitionMap}}
+      // Parse the {{definitionName}} instance.
+      const {{#upperFirst}}{{definitionName}}{{/upperFirst}} = require('./{{#lowercase}}{{definitionName}}{{/lowercase}}');
+      const parsedItem = new {{#upperFirst}}{{definitionName}}{{/upperFirst}}(result);
       this._{{@key}}.push(new {{definitionName}}(input.{{@key}}));
+      {{else}}
+      throw new Error('Could not find definition for items collection');
+      {{/withDef}}
+      {{/if}}
+      {{else}}
+      throw new Error('Cannot handle array: no items collection defined');
+      {{/with}}
     }
     {{else}}
     if (input.{{@key}} !== null) {

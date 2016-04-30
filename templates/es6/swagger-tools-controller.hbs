@@ -102,9 +102,37 @@ function {{operationId}}(req, res) {
       {{#withDef $ref ../../../definitionMap}}
       const {{#upperFirst}}{{definitionName}}{{/upperFirst}} = require('{{#with ../../../../options}}{{defsRelativeToController}}{{/with}}/{{#lowercase}}{{definitionName}}{{/lowercase}}');
       const typedResult = new {{#upperFirst}}{{definitionName}}{{/upperFirst}}(result);
+      {{else}}
+      {{#compare type "===" "array"}}
+      // Result is an array
+      const typedResult = [];
+      {{#with items}}
+      for (const resultItem of result) {
+        {{#if type}}
+        // Primative type mapping - Copy verbatim.
+        typedResult.push(resultItem);
+        {{else}}
+        {{#withDef $ref ../../../../definitionMap}}
+        // Parse the {{definitionName}} instance.
+        const {{#upperFirst}}{{definitionName}}{{/upperFirst}} = require('{{#with ../../../../../options}}{{defsRelativeToController}}{{/with}}/{{#lowercase}}{{definitionName}}{{/lowercase}}');
+        const parsedItem = new {{#upperFirst}}{{definitionName}}{{/upperFirst}}(result);
+        typedResult.push(parsedItem);
+        {{else}}
+        throw new Error('Cannot process an array: the item type was not set in the swaggerFile');
+        {{/withDef}}
+        {{/if}}
+      }
+      {{else}}
+      throw new Error('Cannot process an array: the swaggerFile does not define items.');
+      {{/with}}
+      {{else}}
+      // We aren't a simple definition, null or a native array.
+      // Throw an error for the unsupported response.
+      throw new Error('Unknown result type: {{type}}');
+      {{/compare}}
       {{/withDef}}
       {{/with}}
-      res.json(typedResult || {}, {{#compare @key "===" "default"}}200{{else}}{{@key}}{{/compare}});
+      res.json(typedResult, {{#compare @key "===" "default"}}200{{else}}{{@key}}{{/compare}});
       {{else}}
       {{#if type}}
       // Basic typed result ({{type}})
