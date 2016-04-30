@@ -173,9 +173,7 @@ function {{operationId}}(req, res) {
   return impl.{{operationId}}(
 {{#each parameters}}    {{name}},
 {{/each}}
-    responder,
-    req,
-    res
+    responder
   );
 }
 {{/each}}
