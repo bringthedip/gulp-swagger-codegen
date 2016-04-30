@@ -18,6 +18,7 @@ module.exports = () =>
           extension: '.js',
           operations: ['get', 'put', 'post', 'delete'],
           implementationPath: '../implementation',
+          defsRelativeToController: '../definitions',
         },
       },
     }))

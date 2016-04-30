@@ -34,11 +34,15 @@ class Pet {
       throw new Error('Cannot initialize. The photoUrls array cannot be null');
     }
     for (const subItem of input.photoUrls) {
-      this._photoUrls.push(new (input.photoUrls));
+      // Primative/string mapping.
+      this._photoUrls.push(subItem);
     }
     this._tags = [];
     for (const subItem of (input.tags || [])) {
-      this._tags.push(new (input.tags));
+      // Parse the Tag instance.
+      const Tag = require('./tag');
+      const parsedItem = new Tag(result);
+      this._tags.push(new Tag(input.tags));
     }
     if (input.status !== null) {
       this._status = input.status;

@@ -64,7 +64,7 @@ function addPet(req, res) {
 
   // Parse operation parameters.
   const bodyGenerator = () => {
-    const TypeDefinition = require('/pet');
+    const TypeDefinition = require('../definitions/pet');
     return new TypeDefinition(req.swagger.params.body.value);
   };
   const body = bodyGenerator(); 
@@ -89,10 +89,16 @@ function addPet(req, res) {
     throw new Error('Implementation is not a function: addPet for pets');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.addPet(
     body,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -108,7 +114,7 @@ function updatePet(req, res) {
 
   // Parse operation parameters.
   const bodyGenerator = () => {
-    const TypeDefinition = require('/pet');
+    const TypeDefinition = require('../definitions/pet');
     return new TypeDefinition(req.swagger.params.body.value);
   };
   const body = bodyGenerator(); 
@@ -137,10 +143,16 @@ function updatePet(req, res) {
     throw new Error('Implementation is not a function: updatePet for pets');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.updatePet(
     body,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -163,8 +175,18 @@ function findPetsByStatus(req, res) {
   // responses with swaggerValidator from swagger-tools.
   const responder = {
     res,
-    // Result code 200 does not have a "x-gulp-swagger-codegen-outcome
-    // 200 = Not mapped
+    // Handle status 200 [success]
+    success: function endSuccess(result) {
+      // Result is an array
+      const typedResult = [];
+      for (const resultItem of result) {
+        // Parse the Pet instance.
+        const Pet = require('../definitions/pet');
+        const parsedItem = new Pet(result);
+        typedResult.push(parsedItem);
+      }
+      res.json(typedResult, 200);
+    },
     // Result code 400 does not have a "x-gulp-swagger-codegen-outcome
     // 400 = Not mapped
   };
@@ -179,10 +201,16 @@ function findPetsByStatus(req, res) {
     throw new Error('Implementation is not a function: findPetsByStatus for pets');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.findPetsByStatus(
     status,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -205,8 +233,18 @@ function findPetsByTags(req, res) {
   // responses with swaggerValidator from swagger-tools.
   const responder = {
     res,
-    // Result code 200 does not have a "x-gulp-swagger-codegen-outcome
-    // 200 = Not mapped
+    // Handle status 200 [success]
+    success: function endSuccess(result) {
+      // Result is an array
+      const typedResult = [];
+      for (const resultItem of result) {
+        // Parse the Pet instance.
+        const Pet = require('../definitions/pet');
+        const parsedItem = new Pet(result);
+        typedResult.push(parsedItem);
+      }
+      res.json(typedResult, 200);
+    },
     // Result code 400 does not have a "x-gulp-swagger-codegen-outcome
     // 400 = Not mapped
   };
@@ -221,10 +259,16 @@ function findPetsByTags(req, res) {
     throw new Error('Implementation is not a function: findPetsByTags for pets');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.findPetsByTags(
     tags,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -252,9 +296,9 @@ function getPetById(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      const Pet = require('/pet');
+      const Pet = require('../definitions/pet');
       const typedResult = new Pet(result);
-      res.json(typedResult || {}, 200);
+      res.json(typedResult, 200);
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
@@ -288,10 +332,16 @@ function getPetById(req, res) {
     throw new Error('Implementation is not a function: getPetById for pets');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.getPetById(
     petId,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -347,12 +397,18 @@ function updatePetWithForm(req, res) {
     throw new Error('Implementation is not a function: updatePetWithForm for pets');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.updatePetWithForm(
     petId,
     name,
     status,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -404,11 +460,17 @@ function deletePet(req, res) {
     throw new Error('Implementation is not a function: deletePet for pets');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.deletePet(
     api_key,
     petId,
-    responder
+    responder,
+    req,
+    res
   );
 }
 

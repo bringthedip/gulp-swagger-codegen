@@ -64,7 +64,7 @@ function createUser(req, res) {
 
   // Parse operation parameters.
   const bodyGenerator = () => {
-    const TypeDefinition = require('/user');
+    const TypeDefinition = require('../definitions/user');
     return new TypeDefinition(req.swagger.params.body.value);
   };
   const body = bodyGenerator(); 
@@ -97,10 +97,16 @@ function createUser(req, res) {
     throw new Error('Implementation is not a function: createUser for users');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.createUser(
     body,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -144,10 +150,16 @@ function createUsersWithArrayInput(req, res) {
     throw new Error('Implementation is not a function: createUsersWithArrayInput for users');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.createUsersWithArrayInput(
     body,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -191,10 +203,16 @@ function createUsersWithListInput(req, res) {
     throw new Error('Implementation is not a function: createUsersWithListInput for users');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.createUsersWithListInput(
     body,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -220,7 +238,10 @@ function loginUser(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      res.json(typedResult || {}, 200);
+      // We aren't a simple definition, null or a native array.
+      // Throw an error for the unsupported response.
+      throw new Error('Unknown result type: string');
+      res.json(typedResult, 200);
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
@@ -244,11 +265,17 @@ function loginUser(req, res) {
     throw new Error('Implementation is not a function: loginUser for users');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.loginUser(
     username,
     password,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -292,9 +319,15 @@ function logoutUser(req, res) {
     throw new Error('Implementation is not a function: logoutUser for users');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.logoutUser(
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -322,9 +355,9 @@ function getUserByName(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      const User = require('/user');
+      const User = require('../definitions/user');
       const typedResult = new User(result);
-      res.json(typedResult || {}, 200);
+      res.json(typedResult, 200);
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
@@ -358,10 +391,16 @@ function getUserByName(req, res) {
     throw new Error('Implementation is not a function: getUserByName for users');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.getUserByName(
     username,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -381,7 +420,7 @@ function updateUser(req, res) {
   }
   const username = req.swagger.params.username.value;
   const bodyGenerator = () => {
-    const TypeDefinition = require('/user');
+    const TypeDefinition = require('../definitions/user');
     return new TypeDefinition(req.swagger.params.body.value);
   };
   const body = bodyGenerator(); 
@@ -424,11 +463,17 @@ function updateUser(req, res) {
     throw new Error('Implementation is not a function: updateUser for users');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.updateUser(
     username,
     body,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -486,10 +531,16 @@ function deleteUser(req, res) {
     throw new Error('Implementation is not a function: deleteUser for users');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.deleteUser(
     username,
-    responder
+    responder,
+    req,
+    res
   );
 }
 

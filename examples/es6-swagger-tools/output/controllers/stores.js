@@ -64,7 +64,7 @@ function placeOrder(req, res) {
 
   // Parse operation parameters.
   const bodyGenerator = () => {
-    const TypeDefinition = require('/order');
+    const TypeDefinition = require('../definitions/order');
     return new TypeDefinition(req.swagger.params.body.value);
   };
   const body = bodyGenerator(); 
@@ -77,9 +77,9 @@ function placeOrder(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      const Order = require('/order');
+      const Order = require('../definitions/order');
       const typedResult = new Order(result);
-      res.json(typedResult || {}, 200);
+      res.json(typedResult, 200);
     },
     // Handle status 400 [invalid]
     invalid: function endInvalid(result) {
@@ -103,10 +103,16 @@ function placeOrder(req, res) {
     throw new Error('Implementation is not a function: placeOrder for stores');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.placeOrder(
     body,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -134,9 +140,9 @@ function getOrderById(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      const Order = require('/order');
+      const Order = require('../definitions/order');
       const typedResult = new Order(result);
-      res.json(typedResult || {}, 200);
+      res.json(typedResult, 200);
     },
     // Handle status 400 [invalidId]
     invalidId: function endInvalidId(result) {
@@ -170,10 +176,16 @@ function getOrderById(req, res) {
     throw new Error('Implementation is not a function: getOrderById for stores');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.getOrderById(
     orderId,
-    responder
+    responder,
+    req,
+    res
   );
 }
 
@@ -231,10 +243,16 @@ function deleteOrder(req, res) {
     throw new Error('Implementation is not a function: deleteOrder for stores');
   }
 
-  // Execute
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
   return impl.deleteOrder(
     orderId,
-    responder
+    responder,
+    req,
+    res
   );
 }
 

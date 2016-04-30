@@ -99,6 +99,7 @@ paths:
           collectionFormat: multi
       responses:
         "200":
+          x-gulp-swagger-codegen-outcome: success
           description: successful operation
           schema:
             type: array
@@ -133,6 +134,7 @@ paths:
       responses:
         "200":
           description: successful operation
+          x-gulp-swagger-codegen-outcome: success
           schema:
             type: array
             items:
@@ -515,6 +517,30 @@ paths:
         "400":
           x-gulp-swagger-codegen-outcome: invalidId
           description: Invalid username supplied
+  /something:
+    x-swagger-router-controller: edgeCases
+    get:
+      summary: Get a list of native array values
+      operationId: getNativeArray
+      description: Returns a list of something
+      produces:
+        - application/json
+      responses:
+        "200":
+          x-gulp-swagger-codegen-outcome: nativeArray
+          description: A native array
+          schema:
+            type: array
+            items:
+              type: string
+        "201":
+          x-gulp-swagger-codegen-outcome: objectArray
+          description: An object array
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Pet"
+
 securityDefinitions:
   api_key:
     type: apiKey
