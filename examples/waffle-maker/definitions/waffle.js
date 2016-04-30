@@ -2,12 +2,12 @@
 
 
 /**
- * Object definition for Tag
+ * A type of waffle known to the system.
  * @class
  **/
-class Tag {
+class Waffle {
   /**
-   * Initialize a new instance of Tag
+   * Initialize a new instance of Waffle
    * @param {object}    input     - Optional input to initialize with a fixed value.
    **/
   constructor(input) {
@@ -19,9 +19,20 @@ class Tag {
     // Load property values from input object
     if (input.id !== null) {
       this._id = input.id;
+    } else {
+      throw new Error('Cannot initialize  - id cannot be null');
     }
     if (input.name !== null) {
       this._name = input.name;
+    } else {
+      throw new Error('Cannot initialize  - name cannot be null');
+    }
+    this._ingredients = [];
+    for (const subItem of (input.ingredients || [])) {
+      // Parse the Ingredient instance.
+      const Ingredient = require('./ingredient');
+      const parsedItem = new Ingredient(result);
+      this._ingredients.push(new Ingredient(input.ingredients));
     }
   }
 
@@ -38,6 +49,9 @@ class Tag {
    * @param newVal - New value to assign.
    **/
   set id(newVal) {
+    if (newVal === null) {
+      throw new Error('Cannot change value to null, not permitted.');
+    }
     this._id = newVal;
   }
 
@@ -54,7 +68,26 @@ class Tag {
    * @param newVal - New value to assign.
    **/
   set name(newVal) {
+    if (newVal === null) {
+      throw new Error('Cannot change value to null, not permitted.');
+    }
     this._name = newVal;
+  }
+
+  /**
+   * Get value of ingredients
+   * @returns - Current value of ingredients.
+   **/
+  get ingredients() {
+    return this._ingredients;
+  }
+
+  /**
+   * Change the value of ingredients.
+   * @param newVal - New value to assign.
+   **/
+  set ingredients(newVal) {
+    this._ingredients = newVal;
   }
   /**
    * Convert the current instance to a plain object
@@ -65,20 +98,21 @@ class Tag {
     const result = {};
     result.id = this._id;
     result.name = this._name;
+    result.ingredients = this._ingredients;
     return result;
   }
 
   /**
    * Completely clone this instance.
-   * @returns Tag - Cloned object.
+   * @returns Waffle - Cloned object.
    **/
   clone() {
     // Complete serialize and deserialize.
     const obj = JSON.parse(JSON.stringify(this));
 
     // Re-parse using constructor
-    return new Tag(obj);
+    return new Waffle(obj);
   }
 }
 
-module.exports = Tag;
+module.exports = Waffle;

@@ -1,6 +1,6 @@
 'use strict';
 
-const storesImplementation = require('../implementation/stores');
+const wafflesImplementation = require('../implementation/waffles');
 
 /**
  * Helper function to validate that various attributes of
@@ -53,21 +53,16 @@ function resolveImplementation(impl, req) {
 
 
 /**
- * Place an order for a pet
- * @remarks Operation handler for placeOrder
+ * List the types of Waffles known to the waffle making machine.
+ * @remarks Operation handler for getWaffleList
  * @param {object}    req     - Request object
  * @param {object}    res     - Response object
  **/
-function placeOrder(req, res) {
+function getWaffleList(req, res) {
   // Validate arguments
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  const bodyGenerator = () => {
-    const TypeDefinition = require('../definitions/order');
-    return new TypeDefinition(req.swagger.params.body.value);
-  };
-  const body = bodyGenerator(); 
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -77,30 +72,26 @@ function placeOrder(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      const Order = require('../definitions/order');
-      const typedResult = new Order(result);
-      res.json(typedResult, 200);
-    },
-    // Handle status 400 [invalid]
-    invalid: function endInvalid(result) {
-      // Void result
-      if (result) {
-        throw new Error('Should not have any \'result\' for this operation outcome');
+      // Result is an array
+      const typedResult = [];
+      for (const resultItem of result) {
+        // Parse the Waffle instance.
+        const Waffle = require('../definitions/waffle');
+        const parsedItem = new Waffle(result);
+        typedResult.push(parsedItem);
       }
-      res.setHeader('Content-Type', 'application/json');
-      res.statusCode = 400;
-      res.end();
+      res.json(typedResult, 200);
     },
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(storesImplementation, req);
+  const impl = resolveImplementation(wafflesImplementation, req);
   if (!impl) {
-    throw new Error('Cannot resolve implementation of stores');
-  } else if (!impl.placeOrder) {
-    throw new Error('Implementation is missing operation placeOrder for stores');
-  } else if (!(typeof impl.placeOrder === 'function')) {
-    throw new Error('Implementation is not a function: placeOrder for stores');
+    throw new Error('Cannot resolve implementation of waffles');
+  } else if (!impl.getWaffleList) {
+    throw new Error('Implementation is missing operation getWaffleList for waffles');
+  } else if (!(typeof impl.getWaffleList === 'function')) {
+    throw new Error('Implementation is not a function: getWaffleList for waffles');
   }
 
   // Execute, passing the parameters
@@ -108,8 +99,7 @@ function placeOrder(req, res) {
   // responder - The responder helper object.
   // req - The raw request object
   // res - The raw response object
-  return impl.placeOrder(
-    body,
+  return impl.getWaffleList(
     responder,
     req,
     res
@@ -117,20 +107,20 @@ function placeOrder(req, res) {
 }
 
 /**
- * Find purchase order by ID
- * @remarks For valid response try integer IDs with value &lt;&#x3D; 5 or &gt; 10. Other values will generated exceptions
+ * Fetch a single waffle type by id
+ * @remarks Operation handler for getWaffleById
  * @param {object}    req     - Request object
  * @param {object}    res     - Response object
  **/
-function getOrderById(req, res) {
+function getWaffleById(req, res) {
   // Validate arguments
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  if (req.swagger.params.orderId === null || req.swagger.params.orderId === undefined) {
-    throw new Error('Cannot process : parameter orderId cannot be null.');
+  if (req.swagger.params.id === null || req.swagger.params.id === undefined) {
+    throw new Error('Cannot process : parameter id cannot be null.');
   }
-  const orderId = req.swagger.params.orderId.value;
+  const id = req.swagger.params.id.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -140,19 +130,9 @@ function getOrderById(req, res) {
     res,
     // Handle status 200 [success]
     success: function endSuccess(result) {
-      const Order = require('../definitions/order');
-      const typedResult = new Order(result);
+      const Waffle = require('../definitions/waffle');
+      const typedResult = new Waffle(result);
       res.json(typedResult, 200);
-    },
-    // Handle status 400 [invalidId]
-    invalidId: function endInvalidId(result) {
-      // Void result
-      if (result) {
-        throw new Error('Should not have any \'result\' for this operation outcome');
-      }
-      res.setHeader('Content-Type', 'application/json');
-      res.statusCode = 400;
-      res.end();
     },
     // Handle status 404 [notFound]
     notFound: function endNotFound(result) {
@@ -167,13 +147,13 @@ function getOrderById(req, res) {
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(storesImplementation, req);
+  const impl = resolveImplementation(wafflesImplementation, req);
   if (!impl) {
-    throw new Error('Cannot resolve implementation of stores');
-  } else if (!impl.getOrderById) {
-    throw new Error('Implementation is missing operation getOrderById for stores');
-  } else if (!(typeof impl.getOrderById === 'function')) {
-    throw new Error('Implementation is not a function: getOrderById for stores');
+    throw new Error('Cannot resolve implementation of waffles');
+  } else if (!impl.getWaffleById) {
+    throw new Error('Implementation is missing operation getWaffleById for waffles');
+  } else if (!(typeof impl.getWaffleById === 'function')) {
+    throw new Error('Implementation is not a function: getWaffleById for waffles');
   }
 
   // Execute, passing the parameters
@@ -181,8 +161,8 @@ function getOrderById(req, res) {
   // responder - The responder helper object.
   // req - The raw request object
   // res - The raw response object
-  return impl.getOrderById(
-    orderId,
+  return impl.getWaffleById(
+    id,
     responder,
     req,
     res
@@ -190,20 +170,20 @@ function getOrderById(req, res) {
 }
 
 /**
- * Delete purchase order by ID
- * @remarks For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
+ * Fetch ingredients for a single waffle type by id
+ * @remarks Operation handler for getIngredientsOfWaffle
  * @param {object}    req     - Request object
  * @param {object}    res     - Response object
  **/
-function deleteOrder(req, res) {
+function getIngredientsOfWaffle(req, res) {
   // Validate arguments
   validateSwaggerRequest(req, res);
 
   // Parse operation parameters.
-  if (req.swagger.params.orderId === null || req.swagger.params.orderId === undefined) {
-    throw new Error('Cannot process : parameter orderId cannot be null.');
+  if (req.swagger.params.id === null || req.swagger.params.id === undefined) {
+    throw new Error('Cannot process : parameter id cannot be null.');
   }
-  const orderId = req.swagger.params.orderId.value;
+  const id = req.swagger.params.id.value;
 
   // Create responder: This will set the content type, status code and also
   // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
@@ -211,36 +191,26 @@ function deleteOrder(req, res) {
   // responses with swaggerValidator from swagger-tools.
   const responder = {
     res,
-    // Handle status 400 [invalidId]
-    invalidId: function endInvalidId(result) {
-      // Void result
-      if (result) {
-        throw new Error('Should not have any \'result\' for this operation outcome');
+    // Handle status 200 [success]
+    success: function endSuccess(result) {
+      // Result is an array
+      const typedResult = [];
+      for (const resultItem of result) {
+        // Primative type mapping - Copy verbatim.
+        typedResult.push(resultItem);
       }
-      res.setHeader('Content-Type', 'application/json');
-      res.statusCode = 400;
-      res.end();
-    },
-    // Handle status 404 [notFound]
-    notFound: function endNotFound(result) {
-      // Void result
-      if (result) {
-        throw new Error('Should not have any \'result\' for this operation outcome');
-      }
-      res.setHeader('Content-Type', 'application/json');
-      res.statusCode = 404;
-      res.end();
+      res.json(typedResult, 200);
     },
   };
 
   // Validate implementation presence
-  const impl = resolveImplementation(storesImplementation, req);
+  const impl = resolveImplementation(wafflesImplementation, req);
   if (!impl) {
-    throw new Error('Cannot resolve implementation of stores');
-  } else if (!impl.deleteOrder) {
-    throw new Error('Implementation is missing operation deleteOrder for stores');
-  } else if (!(typeof impl.deleteOrder === 'function')) {
-    throw new Error('Implementation is not a function: deleteOrder for stores');
+    throw new Error('Cannot resolve implementation of waffles');
+  } else if (!impl.getIngredientsOfWaffle) {
+    throw new Error('Implementation is missing operation getIngredientsOfWaffle for waffles');
+  } else if (!(typeof impl.getIngredientsOfWaffle === 'function')) {
+    throw new Error('Implementation is not a function: getIngredientsOfWaffle for waffles');
   }
 
   // Execute, passing the parameters
@@ -248,8 +218,8 @@ function deleteOrder(req, res) {
   // responder - The responder helper object.
   // req - The raw request object
   // res - The raw response object
-  return impl.deleteOrder(
-    orderId,
+  return impl.getIngredientsOfWaffle(
+    id,
     responder,
     req,
     res
@@ -257,7 +227,7 @@ function deleteOrder(req, res) {
 }
 
 module.exports = {
-  placeOrder,
-  getOrderById,
-  deleteOrder,
+  getWaffleList,
+  getWaffleById,
+  getIngredientsOfWaffle,
 };

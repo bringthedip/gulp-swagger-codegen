@@ -1,0 +1,116 @@
+swagger: "2.0"
+info:
+  description: |
+    This is an example Swaggerfile describing an API. It describes a few typical constructs
+    that would be useful when creating an application.
+  version: "1.0.0"
+  title: Waffle Processing Machinery
+  license:
+    name: MIT
+host: waffles.eventualconsistency.net
+basePath: /v1
+schemes:
+  - http
+  - https
+paths:
+  /waffles:
+    x-swagger-router-controller: waffles
+    get:
+      operationId: getWaffleList
+      tags:
+        - Waffle Operations
+      summary: List the types of Waffles known to the waffle making machine.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          x-gulp-swagger-codegen-outcome: success
+          description: List of waffle types
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Waffle"
+
+  /waffles/{id}:
+    x-swagger-router-controller: waffles
+    get:
+      operationId: getWaffleById
+      tags:
+        - Waffle Operations
+      summary: Fetch a single waffle type by id
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: number
+          description: Id of waffle
+      responses:
+        "200":
+          x-gulp-swagger-codegen-outcome: success
+          description: Specific waffle.
+          schema:
+            $ref: "#/definitions/Waffle"
+        "404":
+          x-gulp-swagger-codegen-outcome: notFound
+          description: The waffle was not found
+
+  /waffles/{id}/ingredients:
+    x-swagger-router-controller: waffles
+    get:
+      operationId: getIngredientsOfWaffle
+      summary: Fetch ingredients for a single waffle type by id
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: number
+          description: Id of waffle
+      responses:
+        "200":
+          x-gulp-swagger-codegen-outcome: success
+          description: Specific waffle.
+          schema:
+            type: array
+            items:
+              type: string
+
+definitions:
+  Waffle:
+    type: object
+    description: A type of waffle known to the system.
+    required:
+      - id
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      ingredients:
+        type: array
+        items:
+          $ref: "#/definitions/Ingredient"
+  Ingredient:
+    type: object
+    description: A type of ingredient.
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        description: Name of ingredient
+      sellers:
+        type: array
+        items:
+          type: string

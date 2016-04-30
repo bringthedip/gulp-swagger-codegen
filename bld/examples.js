@@ -3,7 +3,7 @@ const gulp = require('gulp');
 const task = require('../task');
 
 module.exports = () =>
-  gulp.src(['./examples/es6-swagger-tools/petstore.yaml'])
+  gulp.src(['./examples/waffle-maker/service-contract.yaml'])
     .pipe(task({
       perDefinition: {
         './templates/es6/definition.hbs': {
@@ -22,4 +22,4 @@ module.exports = () =>
         },
       },
     }))
-    .pipe(gulp.dest('./examples/es6-swagger-tools/output'));
+    .pipe(gulp.dest('./examples/waffle-maker'));
