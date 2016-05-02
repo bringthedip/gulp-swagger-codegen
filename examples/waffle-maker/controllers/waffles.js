@@ -77,7 +77,7 @@ function getWaffleList(req, res) {
       for (const resultItem of result) {
         // Parse the Waffle instance.
         const Waffle = require('../definitions/waffle');
-        const parsedItem = new Waffle(result);
+        const parsedItem = new Waffle(resultItem);
         typedResult.push(parsedItem);
       }
       res.json(typedResult, 200);
@@ -100,9 +100,7 @@ function getWaffleList(req, res) {
   // req - The raw request object
   // res - The raw response object
   return impl.getWaffleList(
-    responder,
-    req,
-    res
+    responder
   );
 }
 
@@ -163,9 +161,7 @@ function getWaffleById(req, res) {
   // res - The raw response object
   return impl.getWaffleById(
     id,
-    responder,
-    req,
-    res
+    responder
   );
 }
 
@@ -220,9 +216,7 @@ function getIngredientsOfWaffle(req, res) {
   // res - The raw response object
   return impl.getIngredientsOfWaffle(
     id,
-    responder,
-    req,
-    res
+    responder
   );
 }
 

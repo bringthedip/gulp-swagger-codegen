@@ -31,7 +31,7 @@ class Waffle {
     for (const subItem of (input.ingredients || [])) {
       // Parse the Ingredient instance.
       const Ingredient = require('./ingredient');
-      const parsedItem = new Ingredient(result);
+      const parsedItem = new Ingredient(subItem);
       this._ingredients.push(new Ingredient(input.ingredients));
     }
   }
