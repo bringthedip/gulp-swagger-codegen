@@ -1,8 +1,6 @@
 {
     "build": {
-        // Javascript linting
         "linting": {
-            // Console formatter
             "formatter": "stylish",
             
             "paths": [
@@ -17,46 +15,23 @@
             ]
         },
 
-        // Documentation generation
         "documentation": {
             "paths": [
-                "./task/" // esdoc requires folders, not files
+                "./task/" 
             ],
-
-            // Path to write documentation to
             "outputPath": "./docs/code",
-
-            // Include undocumented identifiers
             "undocumentedIdentifiers": false,
-
-            // Include unexported identifiers, required for CommonJS module notation.
             "unexportedIdentifiers": true,
-            
-            // Type of tests
             "testType": "mocha",
-
-            // Root for tests to include in documentation.
             "testRoot": "./tst/"
         },
-
-        // Unit-testing
         "testing": {
             "findPattern": "./tst/**/*.js",
             "coverage": {
-                // % of code to cover with tests
                 "enforceThreshold": 90,
-
-                // Include coverage results for files not touched at all by
-                // any of our Mocha tests
                 "includeUntested": true,
-
-                // Instrument all application code
                 "instrumentPath": "./task/**/*.js",
-
-                // Path to write coverage HTML report to.
                 "outputPath": "./docs/code-coverage",
-
-                // Temporary path for coverage tests
                 "tempPath": "./temp/code-coverage"
             }
         }
