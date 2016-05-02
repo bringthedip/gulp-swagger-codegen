@@ -1,7 +1,7 @@
 'use strict';
 
 // NPM Imports
-const codegen = require('../../swagger-codegen');
+const codegen = require('swagger-codegen');
 const debug = require('debug')('gulp-swagger-codegen:gulpTask');
 const defaults = require('defaults-deep');
 const gutil = require('gulp-util');
