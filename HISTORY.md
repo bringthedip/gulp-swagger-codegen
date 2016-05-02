@@ -1,5 +1,13 @@
 # Release Note History
 
+## Version 2.0.0
+Completely refactored, split the project into:
+
+  - swagger-codegen - Published to NPM seperately, and externalises all the code generation.
+  - gulp-swagger-codegen - Gulp adapter for swagger-codegen
+  
+This dramatically simplifies the work in this library.
+
 ## Version 1.0.0
 Because it's basically 'done'/good-enough for common cases.
 

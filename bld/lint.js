@@ -12,7 +12,6 @@ module.exports = function runLinting() {
       modules: false,
     },
     rules: {
-      'guard-for-in': 0,
       strict: [2, 'global'],
     },
     env: {

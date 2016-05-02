@@ -37,3 +37,7 @@ tst/**/output
 
 # Documentation
 docs
+
+# OS Specifics
+.DS_Store
+thumbs.db
