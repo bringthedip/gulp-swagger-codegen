@@ -115,7 +115,7 @@ function {{operationId}}(req, res) {
         {{#withDef $ref ../../../../definitionMap}}
         // Parse the {{definitionName}} instance.
         const {{#upperFirst}}{{definitionName}}{{/upperFirst}} = require('{{#with ../../../../../options}}{{defsRelativeToController}}{{/with}}/{{#lowercase}}{{definitionName}}{{/lowercase}}');
-        const parsedItem = new {{#upperFirst}}{{definitionName}}{{/upperFirst}}(result);
+        const parsedItem = new {{#upperFirst}}{{definitionName}}{{/upperFirst}}(resultItem);
         typedResult.push(parsedItem);
         {{else}}
         throw new Error('Cannot process an array: the item type was not set in the swaggerFile');

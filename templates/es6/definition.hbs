@@ -45,7 +45,7 @@ class {{definitionName}} {
       {{#withDef $ref ../../../definitionMap}}
       // Parse the {{definitionName}} instance.
       const {{#upperFirst}}{{definitionName}}{{/upperFirst}} = require('./{{#lowercase}}{{definitionName}}{{/lowercase}}');
-      const parsedItem = new {{#upperFirst}}{{definitionName}}{{/upperFirst}}(result);
+      const parsedItem = new {{#upperFirst}}{{definitionName}}{{/upperFirst}}(subItem);
       this._{{@key}}.push(new {{definitionName}}(input.{{@key}}));
       {{else}}
       throw new Error('Could not find definition for items collection');
