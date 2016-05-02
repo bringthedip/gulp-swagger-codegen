@@ -5,8 +5,16 @@ Completely refactored, split the project into:
 
   - swagger-codegen - Published to NPM seperately, and externalises all the code generation.
   - gulp-swagger-codegen - Gulp adapter for swagger-codegen
+  - Externalised all templates
   
-This dramatically simplifies the work in this library.
+This dramatically simplifies the work in this library. All tests relating to
+handlebars or other output management are now in the upstream
+[swagger-codegen](https://www.npmjs.com/package/swagger-codegen) project.
+
+### Important:
+__Breaking Changes__: The template are no-longer bundled with
+the code generator, and instead are shipped seperately. Reliance
+on template paths from this package will now fail.
 
 ## Version 1.0.0
 Because it's basically 'done'/good-enough for common cases.

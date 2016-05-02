@@ -43,7 +43,8 @@ any output.
 
 ## Example Usage
 The following code snippet shows the module being used in a standard Gulp
-workflow:
+workflow, where we assume that the various templates below exist in your
+project(s):
 
     gulp.task('default', () => {
       return gulp.src(['./path/to/your/swagger.yaml'])
@@ -71,6 +72,22 @@ workflow:
         }))
         .pipe(gulp.dest('./server/api/'))
     });
+
+You can dramatically simplify this by using a template-helper module, such
+as `swagger-template-es6-server`:
+
+    const templateSet = require('swagger-template-es6-server');
+    const codegen = require('gulp-swagger-codegen');
+
+    gulp.task('generate-code', () =>
+      gulp.src(['./examples/waffle-maker/service-contract.yaml'])
+        .pipe(codegen(templateSet({
+          implementationPath: '../implementation',
+        })))
+        .pipe(gulp.dest('./examples/waffle-maker')));
+
+For more information on this template set, see
+[the official NPM package site](https://www.npmjs.com/package/swagger-template-es6-server).
 
 ## Included Templates
 Within the NPM package for this module, several templates are included

@@ -11,7 +11,7 @@ module.exports = function runLinting() {
     rules: {
       'guard-for-in': 0,
       'no-loop-func': 0,
-      strict: [2, 'global'],
+      strict: [0, 'global'],
     },
     ecmaFeatures: {
       modules: false,

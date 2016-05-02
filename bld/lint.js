@@ -12,7 +12,7 @@ module.exports = function runLinting() {
       modules: false,
     },
     rules: {
-      strict: [2, 'global'],
+      strict: [0, 'global'],
     },
     env: {
       es6: true,
