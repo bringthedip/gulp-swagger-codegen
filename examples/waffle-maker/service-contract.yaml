@@ -32,7 +32,21 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Waffle"
-
+    post:
+      operationId: bulkLoadWaffles
+      summary: Bulk insert waffles for the system.
+      parameters:
+        - name: data
+          in: body
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Waffle"
+      responses:
+        "200":
+          x-gulp-swagger-codegen-outcome: success
+          description: Bulk upload success.
+        
   /waffles/{id}:
     x-swagger-router-controller: waffles
     get:

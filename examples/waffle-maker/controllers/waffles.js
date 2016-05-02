@@ -105,6 +105,58 @@ function getWaffleList(req, res) {
 }
 
 /**
+ * Bulk insert waffles for the system.
+ * @remarks Operation handler for bulkLoadWaffles
+ * @param {object}    req     - Request object
+ * @param {object}    res     - Response object
+ **/
+function bulkLoadWaffles(req, res) {
+  // Validate arguments
+  validateSwaggerRequest(req, res);
+
+  // Parse operation parameters.
+  const data = req.swagger.params.data.value;
+
+  // Create responder: This will set the content type, status code and also
+  // terminate the request. Note that you must set x-gulp-swagger-codegen-outcome
+  // on operations in order to have a mapping here. Enforce typing of the
+  // responses with swaggerValidator from swagger-tools.
+  const responder = {
+    res,
+    // Handle status 200 [success]
+    success: function endSuccess(result) {
+      // Void result
+      if (result) {
+        throw new Error('Should not have any \'result\' for this operation outcome');
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.statusCode = 200;
+      res.end();
+    },
+  };
+
+  // Validate implementation presence
+  const impl = resolveImplementation(wafflesImplementation, req);
+  if (!impl) {
+    throw new Error('Cannot resolve implementation of waffles');
+  } else if (!impl.bulkLoadWaffles) {
+    throw new Error('Implementation is missing operation bulkLoadWaffles for waffles');
+  } else if (!(typeof impl.bulkLoadWaffles === 'function')) {
+    throw new Error('Implementation is not a function: bulkLoadWaffles for waffles');
+  }
+
+  // Execute, passing the parameters
+  // (variable-list) - All extracted parameters in declaration order.
+  // responder - The responder helper object.
+  // req - The raw request object
+  // res - The raw response object
+  return impl.bulkLoadWaffles(
+    data,
+    responder
+  );
+}
+
+/**
  * Fetch a single waffle type by id
  * @remarks Operation handler for getWaffleById
  * @param {object}    req     - Request object
@@ -222,6 +274,7 @@ function getIngredientsOfWaffle(req, res) {
 
 module.exports = {
   getWaffleList,
+  bulkLoadWaffles,
   getWaffleById,
   getIngredientsOfWaffle,
 };

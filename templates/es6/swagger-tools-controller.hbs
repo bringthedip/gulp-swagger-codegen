@@ -79,7 +79,9 @@ function {{operationId}}(req, res) {
     const TypeDefinition = require('{{#with ../../../../options}}{{defsRelativeToController}}{{/with}}/{{#lowercase}}{{definitionName}}{{/lowercase}}');
     return new TypeDefinition(req.swagger.params.{{../../name}}.value);
   };
-  const {{../../name}} = {{../../name}}Generator(); 
+  const {{../../name}} = {{../../name}}Generator();
+  {{else}}
+  const {{../name}} = req.swagger.params.{{../name}}.value;
   {{/withDef}}
   {{/with}}
   {{else}}
