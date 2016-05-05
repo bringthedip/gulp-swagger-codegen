@@ -8,3 +8,12 @@ script: gulp
 
 after_success:
   - cat ./docs/code-coverage/lcov.info | node node_modules/coveralls/bin/coveralls.js
+  
+deploy:
+  provider: npm
+  api_key: "$NPM_AUTH_KEY"
+  email: eventsauce@cobaltsoftware.net
+  skip_cleanup: true
+  on:
+    tags: true
+    node_js: 6.0
