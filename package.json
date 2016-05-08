@@ -1,6 +1,6 @@
 {
   "name": "gulp-swagger-codegen",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Flexible code generation for Swagger projects, targets ES6+.",
   "main": "index.js",
   "scripts": {
