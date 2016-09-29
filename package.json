@@ -57,7 +57,7 @@
     "gulp-istanbul": "^1.0.0",
     "gulp-mocha": "^2.2.0",
     "swagger-template-es6-server": "0.0.5",
-    "vinyl": "^1.1.1"
+    "vinyl": "^2.0.0"
   },
   "engines": {
     "node": ">=4.0.0"
