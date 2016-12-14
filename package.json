@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/steve-gray/gulp-swagger-codegen#readme",
   "dependencies": {
-    "debug": "^2.2.0",
+    "debug": "^2.4.1",
     "defaults-deep": "^0.2.3",
     "gulp-util": "^3.0.7",
     "handlebars": "^4.0.5",
