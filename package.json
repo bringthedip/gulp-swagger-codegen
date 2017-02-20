@@ -55,7 +55,7 @@
     "gulp-esdoc": "^0.2.0",
     "gulp-eslint": "^2.0.0",
     "gulp-istanbul": "^1.0.0",
-    "gulp-mocha": "^2.2.0",
+    "gulp-mocha": "^4.0.1",
     "swagger-template-es6-server": "0.0.5",
     "vinyl": "^1.1.1"
   },
